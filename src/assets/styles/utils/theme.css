@@ -1,0 +1,40 @@
+:root {
+    color-scheme: light dark;
+    accent-color: var(--secondary);
+
+    --bg-gray: oklch(64.83% 0.0073 286.19);
+    --bg-gray-2: light-dark(oklch(75.23% 0.0071 286.23), oklch(50.07% 0.0047 286.23));
+    --bg-gray-3: light-dark(oklch(83.12% 0.0069 286.25), oklch(40.24% 0.0033 286.25));
+    --bg-gray-4: light-dark(oklch(86.22% 0.0068 286.26), oklch(34.92% 0.0034 286.22));
+    --bg-gray-5: light-dark(oklch(92.33% 0.0067 286.27), oklch(29.39% 0.0036 286.18));
+    --bg-gray-6: light-dark(oklch(96.26% 0.0066 286.27), oklch(22.73% 0.0038 286.09));
+
+    --fg-gray: light-dark(oklch(22.73% 0.0038 286.09), oklch(96.26% 0.0066 286.27));
+    --fg-gray-2: light-dark(oklch(29.39% 0.0036 286.18), oklch(92.33% 0.0067 286.27));
+    --fg-gray-3: light-dark(oklch(34.92% 0.0034 286.22), oklch(86.22% 0.0068 286.26));
+    --fg-gray-4: light-dark(oklch(40.24% 0.0033 286.25), oklch(83.12% 0.0069 286.25));
+    --fg-gray-5: light-dark(oklch(50.07% 0.0047 286.23), oklch(75.23% 0.0071 286.23));
+    --fg-gray-6: oklch(64.83% 0.0073 286.19);
+
+    --white: light-dark(oklch(100% 0 0), oklch(96.26% 0.0066 286.27));
+    --black: oklch(0% 0 0);
+    --dark: light-dark(var(--fg-gray), var(--bg-gray-6));
+
+    --primary: var(--color-blue);
+    --secondary: var(--pink-4);
+
+    --bg-color: light-dark(var(--bg-gray-6), var(--black));
+    --bg-accent: var(--bg-gray-5);
+    --fg-color: light-dark(var(--fg-gray-3), var(--fg-gray));
+    --fg-accent: var(--fg-gray-6);
+    --bg-card: light-dark(var(--white), var(--bg-gray-6));
+    --bg-form: light-dark(var(--bg-gray-6), var(--bg-gray-4));
+    --bg-dialog: var(--bg-gray-6);
+
+    --glass-alpha: 0.5;
+    --bg-glass: light-dark(rgba(242, 242, 247, var(--glass-alpha)), rgba(0, 0, 0, var(--glass-alpha)));
+
+    @media (prefers-reduced-transparency: reduce) {
+        --glass-alpha: 1;
+    }
+}

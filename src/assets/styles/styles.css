@@ -1,0 +1,17 @@
+
+@layer reset, openprops, theme, utils, layouts, components, pages, overwrite;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400&display=swap');
+@import url("https://unpkg.com/open-props") layer(openprops);
+/* @import url("https://unpkg.com/open-props/shadows.min.css");
+@import url("https://unpkg.com/open-props/borders.min.css"); */
+
+@import url(./utils/reset.css) layer(reset);
+@import url(./utils/theme.css) layer(theme);
+@import url(./utils/utils.css) layer(utils);
+@import url(./utils/colors.css) layer(utils);
+
+@import url(./utils/copy.css) layer(components);
+
+@import url(./overwrite.css) layer(overwrite);

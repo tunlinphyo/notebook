@@ -1,0 +1,25 @@
+---
+import Aside from "./utils/Aside.astro"
+import MainContent from "./utils/MainContent.astro"
+---
+
+<main>
+    <Aside />
+    <MainContent>
+        <slot />
+    </MainContent>
+</main>
+
+<style>
+@layer layouts {
+    main {
+        width: 100%;
+        display: block;
+
+        @media (min-width: 992px) {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+        }
+    }
+}
+</style>

@@ -1,0 +1,70 @@
+---
+import NavItem from "./NavItem.astro"
+---
+
+<nav>
+    <h2>HTML</h2>
+    <ul>
+        <li>
+            <NavItem url="/html/reactive-form" label="ReactiveFrom" />
+        </li>
+        <li>
+            <NavItem url="/html/form-debug" label="FromDebug" />
+        </li>
+        <li>
+            <NavItem url="/html/dynamic-list" label="DynamicList" />
+        </li>
+    </ul>
+    <h2>CSS</h2>
+    <ul>
+        <li>
+            <NavItem url="/css/signal" label="signal" />
+        </li>
+    </ul>
+    <h2>Script</h2>
+    <ul>
+        <li>
+            <NavItem url="/type-script/signal" label="signal" />
+        </li>
+        <li>
+            <NavItem url="/type-script/context" label="context" />
+        </li>
+        <li>
+            <NavItem url="/type-script/reactive-directive" label="ReactiveDirective" />
+        </li>
+        <li>
+            <NavItem url="/type-script/css-style-sheet" label="CSSStyleSheet" />
+        </li>
+
+    </ul>
+    <h2>Reading</h2>
+    <ul>
+        <li>
+            <NavItem url="/reading/" label="CSS Websites" />
+        </li>
+    </ul>
+</nav>
+
+<style>
+@layer layout {
+    nav {
+        padding: var(--size-3);
+        min-height: calc(100dvh - 132px);
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        margin-block-end: var(--size-3);
+
+        & li {
+            margin-block: 2px;
+        }
+    }
+}
+</style>

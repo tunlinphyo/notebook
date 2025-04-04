@@ -1,0 +1,57 @@
+---
+const { label, url } = Astro.props;
+const currentPath = Astro.url.pathname
+---
+
+<a data-nav class={currentPath === url ? "active" : ""} href={url}>{label}</a>
+
+<style>
+@layer layout {
+    a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--size-2);
+
+        height: var(--size-px-7);
+        text-decoration: none;
+        color: light-dark(var(--gray-8), var(--gray-4));
+        text-transform: capitalize;
+        padding-inline: var(--size-3);
+        border-radius: 10px 40px 40px 10px;
+
+        &::before {
+            content: '';
+            display: block;
+            width: var(--size-1);
+            height: var(--size-2);
+            background-color: var(--gray-5);
+            border-radius: var(--radius-drawn-4);
+
+            transition: width .25s ease;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: light-dark(var(--gray-1), var(--gray-10));
+            &::before {
+                width: var(--size-3);
+            }
+        }
+
+        &.active {
+            background-color: light-dark(var(--green-0), var(--green-10));
+
+            &::before {
+                width: var(--size-3);
+                background-color: light-dark(var(--green-7), var(--green-4));
+            }
+        }
+
+
+        &.active:focus {
+            background-color: var(--green-1);
+        }
+    }
+}
+</style>
