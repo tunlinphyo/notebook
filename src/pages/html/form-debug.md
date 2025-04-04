@@ -54,7 +54,6 @@ export class FormDebug extends MiniEl {
         this.consumer.subscribe((form, oldForm) => {
             updateBindings(this, form, oldForm)
         })
-        this.renderRoot.appendChild(preEl)
     }
 
     protected onDisconnect() {
