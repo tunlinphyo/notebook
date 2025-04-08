@@ -9,7 +9,7 @@ import { Code } from 'astro:components';
 </div>
 
 <script>
-    const buttonEl = document.querySelector<HTMLButtonElement>('data-button=code-copy')
+    const buttonEl = document.querySelector<HTMLButtonElement>('[data-button="code-copy"]')
     buttonEl?.addEventListener('click', (e: Event) => {
         const target = e.target as HTMLButtonElement
         if (target.matches("[data-copy-btn]")) {

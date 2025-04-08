@@ -17,6 +17,10 @@ body {
     }
 }
 
+body:has(dialog[open]) {
+    overflow: hidden;
+}
+
 body {
     color: var(--fg-color);
     background-color: light-dark(var(--gray-0), var(--gray-10));

@@ -1,9 +1,10 @@
 ---
 const { label, url } = Astro.props;
 const currentPath = Astro.url.pathname
+const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath
 ---
 
-<a data-nav class={currentPath === url ? "active" : ""} href={url}>{label}</a>
+<a data-nav class={currentUrl === url ? "active" : ""} href={url}>{label}</a>
 
 <style>
 @layer layout {
