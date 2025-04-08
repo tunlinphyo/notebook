@@ -6,7 +6,7 @@ const hostStyle = css`
     :host {
         display: grid;
         padding: 1rem;
-        background: rgba(128, 128, 128, 0.3);
+        background: light-dark(#fff, #333);
         background-blend-mode: luminosity;
         backdrop-filter: blur(50px);
         border-radius: 2px;
