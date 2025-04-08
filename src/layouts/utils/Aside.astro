@@ -67,6 +67,7 @@ import Nav from "./Nav.astro"
 <style>
 @layer layouts {
     #asideToggle {
+        view-transition-name: asideToggle;
         width: var(--size-9);
         aspect-ratio: 1;
         box-shadow: var(--shadow-3);
@@ -93,6 +94,7 @@ import Nav from "./Nav.astro"
     }
 
     dialog {
+        view-transition-name: aside;
         border: none;
         padding: 0;
         --header-height: 100px;

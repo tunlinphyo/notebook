@@ -1,0 +1,58 @@
+---
+const { code = "", lang = "html" } = Astro.props;
+import { Code } from 'astro:components';
+---
+
+<div class="code-block">
+  <button class="copy-btn" data-button="code-copy">Copy</button>
+  <Code code={code} lang={lang} />
+</div>
+
+<script>
+    const buttonEl = document.querySelector<HTMLButtonElement>('data-button=code-copy')
+    buttonEl?.addEventListener('click', (e: Event) => {
+        const target = e.target as HTMLButtonElement
+        if (target.matches("[data-copy-btn]")) {
+            console.log(e.target)
+            const codeEl = target.nextElementSibling?.querySelector('code');
+            if (codeEl && codeEl.textContent) {
+                navigator.clipboard.writeText(codeEl.textContent.trim());
+                target.textContent = "Copied!";
+                setTimeout(() => (target.textContent = "Copy"), 1500);
+            }
+        }
+    })
+</script>
+
+<style>
+  .code-block {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 1rem;
+    padding: var(--size-3);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: .95rem;
+
+    > * {
+        font-family: DM Mono, serif;
+    }
+}
+</style>

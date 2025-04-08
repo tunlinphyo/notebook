@@ -1,14 +1,15 @@
 ---
-title: 'Form Debug'
-author: 'Tun Lin Phyo'
-layout: ../../layouts/Layout.astro
+import Layout from "../../layouts/Layout.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+import PageTitle from "../../components/PageTitle.astro";
+import FileName from "../../components/FileName.astro";
 ---
 
-# Custom Element: From Debug
+<Layout>
+    <PageTitle>FromDebug</PageTitle>
 
-### Usage in HTML
-```html
-<reactive-form>
+    <h3>Usage</h3>
+    <CodeBlock code={`<reactive-form>
     <div>
         <input type="text" name="name" placeholder="Name" />
         <input type="email" name="email" placeholder="Email" />
@@ -19,16 +20,14 @@ layout: ../../layouts/Layout.astro
         <div>Email: <span data-bind-text="email"></span></div>
         <div>Address: <span data-bind-text="address"></span></div>
     </form-debug>
-</reactive-form>
-```
+</reactive-form>`} lang="html" />
 
-### Code
-```ts
-import { css, html, MiniEl } from "@mini-element"
-import { formContext, updateBindings } from "@mini-element/elements"
-import { ContextConsumer } from "@mini-element/context"
+    <FileName file="form-debug.ts" />
+    <CodeBlock code={`import { css, html, MiniEl } from "@miniel"
+import { formContext, updateBindings } from "@miniel/elements"
+import { ContextConsumer } from "@miniel/context"
 
-const hostStyle = css`
+const hostStyle = css\`
     :host {
         display: grid;
         padding: 1rem;
@@ -41,7 +40,7 @@ const hostStyle = css`
             margin: 0;
         }
     }
-`
+\`
 
 export class FormDebug extends MiniEl {
     private consumer!: ContextConsumer<Record<string, any>>
@@ -61,12 +60,12 @@ export class FormDebug extends MiniEl {
     }
 
     protected render() {
-        return html`
+        return html\`
             <h4>Form Data</h4>
             <slot></slot>
-        `
+        \`
     }
 }
 
-customElements.define('form-debug', FormDebug)
-```
+customElements.define('form-debug', FormDebug)`} lang="ts" />
+</Layout>

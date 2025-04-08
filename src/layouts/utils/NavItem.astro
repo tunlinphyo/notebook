@@ -19,6 +19,7 @@ const currentPath = Astro.url.pathname
         text-transform: capitalize;
         padding-inline: var(--size-3);
         border-radius: 10px 40px 40px 10px;
+        position: relative;
 
         &::before {
             content: '';
@@ -31,20 +32,33 @@ const currentPath = Astro.url.pathname
             transition: width .25s ease;
         }
 
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            border-radius: 10px 40px 40px 10px;
+        }
+
         &:hover,
         &:focus {
-            background-color: light-dark(var(--gray-1), var(--gray-10));
             &::before {
                 width: var(--size-3);
+            }
+            &::after {
+                background-color: light-dark(var(--gray-1), var(--gray-10));
             }
         }
 
         &.active {
-            background-color: light-dark(var(--green-0), var(--green-10));
-
             &::before {
                 width: var(--size-3);
                 background-color: light-dark(var(--green-7), var(--green-4));
+            }
+
+            &::after {
+                background-color: light-dark(var(--green-0), var(--green-10));
             }
         }
 

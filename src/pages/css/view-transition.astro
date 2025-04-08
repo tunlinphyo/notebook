@@ -1,23 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CodeBlock from "../../components/CodeBlock.astro"
+import PageTitle from "../../components/PageTitle.astro"
+---
 
-@layer reset, openprops, theme, utils, layouts, components, pages, overwrite;
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400&display=swap');
-@import url("https://unpkg.com/open-props") layer(openprops);
-/* @import url('/src/styles/prism-tomorrow.css') layer(theme); */
-
-@import "prismjs/themes/prism-tomorrow.css";
-
-@import url(./utils/reset.css) layer(reset);
-@import url(./utils/theme.css) layer(theme);
-@import url(./utils/utils.css) layer(utils);
-@import url(./utils/colors.css) layer(utils);
-
-@import url(./utils/copy.css) layer(components);
-
-@import url(./overwrite.css) layer(overwrite);
-
-@view-transition {
+<Layout>
+    <PageTitle>View Transition API</PageTitle>
+    <p>
+        Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition" target="_blank">@view-transition</a>,
+        <a href="https://open-props.style/" target="_blank">Open Props</a>
+    </p>
+    <CodeBlock code={`@view-transition {
     navigation: auto;
 }
 
@@ -54,7 +47,7 @@
 
 @keyframes PageIn {
     from {
-        translate: min(100vw, 700px) 0;
+        translate: 100vw 0;
     }
     to {
         translate: 0 0;
@@ -66,7 +59,7 @@
         opacity: 1;
     }
     to {
-        translate: max(-50vw, -300px) 0;
+        translate: -50vw 0;
         opacity: 0;
     }
 }
@@ -91,4 +84,5 @@
     to {
         translate: -110% 0;
     }
-}
+}`} lang="css" />
+</Layout>

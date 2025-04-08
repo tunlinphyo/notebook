@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+import PageTitle from "../../components/PageTitle.astro";
+import FileName from "../../components/FileName.astro";
+---
+
+<Layout>
+    <PageTitle>ReactiveFrom</PageTitle>
+
+    <reactive-form>
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Name" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="text" name="address" placeholder="Address" />
+        </div>
+        <select name="select">
+            <option value="" selected>Select</option>
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+            <option value="four">Four</option>
+        </select>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="gender" value="male"> Male
+            </label>
+            <label>
+                <input type="radio" name="gender" value="female">Female
+            </label>
+            <label>
+                <input type="radio" name="gender" value="other"> Other
+            </label>
+        </div>
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="job" value="doctor"> Doctor
+            </label>
+            <label>
+                <input type="checkbox" name="job" value="engineer">Engineer
+            </label>
+            <label>
+                <input type="checkbox" name="job" value="teacher"> Teacher
+            </label>
+        </div>
+        <div class="textarea">
+            <textarea name="textarea"></textarea>
+        </div>
+        <form-debug>
+            <div>Name: <span data-bind-text="name"></span></div>
+            <div>Email: <span data-bind-text="email"></span></div>
+            <div>Address: <span data-bind-text="address"></span></div>
+            <div>Select: <span data-bind-text="select"></span></div>
+            <div>Gender: <span data-bind-text="gender"></span></div>
+            <div>Job: <span data-bind-text="job"></span></div>
+            <div>Textarea: <span data-bind-text="textarea"></span></div>
+        </form-debug>
+    </reactive-form>
+</Layout>
+
+<script>
+    import '../../miniel/elements'
+</script>
+
+<style>
+.input-group {
+    padding-block: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--size-3);
+
+    input, select {
+        width: 100%;
+        height: 42px;
+        padding-inline: 1rem;
+    }
+}
+select {
+    width: 100%;
+    max-width: 300px;
+    height: 42px;
+    padding-inline: 1rem;
+}
+.radio-group {
+    padding-block: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    label {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: .5rem;
+    }
+}
+</style>

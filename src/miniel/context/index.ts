@@ -1,42 +1,4 @@
----
-title: 'Context'
-author: 'Tun Lin Phyo'
-layout: ../../layouts/Layout.astro
----
-
-# Context
-Reference: [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md)
-
-### Types
-```ts
-declare module '@context' {
-    export type Context<T> = symbol & { __contextType?: T };
-    export type ContextCallback<T> = (value: T, oldValue: T) => void;
-
-    export function createContext<T>(name: string): Context<T>;
-
-    export class ContextProvider<T> {
-        constructor(
-            host: HTMLElement,
-            context: Context<T>,
-            options?: { initial?: T }
-        );
-        get value(): T;
-        setValue(val: T): void;
-        subscribe(host: HTMLElement, callback: ContextCallback<T>): () => void;
-        unsubscribe(host: HTMLElement): void;
-    }
-
-    export class ContextConsumer<T> {
-        constructor(host: HTMLElement, context: Context<T>);
-        subscribe(callback: ContextCallback<T>): () => void;
-        unsubscribe(): void;
-    }
-}
-```
-
-### Code
-```ts
+// context.ts
 export type Context<T> = symbol & { __contextType?: T };
 export type ContextCallback<T> = (value: T, oldValue: T) => void;
 
@@ -198,4 +160,3 @@ export class ContextConsumer<T> {
         this.subscriptions.clear();
     }
 }
-```
