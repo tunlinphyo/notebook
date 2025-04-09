@@ -1,0 +1,50 @@
+---
+const { image, title, transitionName } = Astro.props;
+---
+
+<button onclick="history.back()">
+    <svg viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M.88,14.09,4.75,18a1,1,0,0,0,1.42,0h0a1,1,0,0,0,0-1.42L2.61,13H23a1,1,0,0,0,1-1h0a1,1,0,0,0-1-1H2.55L6.17,7.38A1,1,0,0,0,6.17,6h0A1,1,0,0,0,4.75,6L.88,9.85A3,3,0,0,0,.88,14.09Z"/>
+    </svg>
+    Back
+</button>
+<h2 style={`view-transition-name: ${transitionName}Title;`}>{ title }</h2>
+<img style={`view-transition-name: ${transitionName}Img;`} src={ image } alt={ title }>
+<p>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam magni debitis
+    facere quo facilis, quisquam saepe, repudiandae numquam et
+    nostrum dignissimos consequuntur voluptas nulla temporibus quaerat assumenda iure id impedit.
+</p>
+
+
+<style>
+button {
+    background-color: light-dark(#fff, var(--gray-9));
+    border: none;
+    padding: var(--size-1) var(--size-3);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--size-2);
+
+    cursor: pointer;
+
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    border-radius: var(--radius-5);
+    transition: all .3s var(--ease-1);
+
+    &:where(:hover, :focus) {
+        outline-color: var(--green-7);
+        outline-offset: 2px;
+    }
+}
+h2 {
+    font-size: var(--font-size-fluid-3);
+}
+img {
+    width: 100%;
+    background-color: light-dark(#fff, var(--gray-9));
+}
+</style>

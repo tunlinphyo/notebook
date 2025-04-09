@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PageTitle from "../../components/PageTitle.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+---
+
+<Layout>
+    <PageTitle>Aria</PageTitle>
+    <p class="transition">
+        Make element Aria only.
+    </p>
+    <CodeBlock code={`[data-aria-only] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}`} lang="css" />
+
+    <CodeBlock code={`<input data-aria-only type="radio" />`} lang="html" />
+</Layout>

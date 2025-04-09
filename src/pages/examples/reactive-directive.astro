@@ -1,0 +1,188 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PageTitle from "../../components/PageTitle.astro";
+---
+
+<Layout>
+    <PageTitle>ReactiveDirective</PageTitle>
+    <p>
+        Check the implementation of <a href="/script/reactive-directive">ReactiveDirective</a>.
+    </p>
+
+    <reactive-test scoped>
+        <button data-button="toggle" data-toggle="on" data-target="outie">TOGGLE OUTIE</button>
+        <div class="mb" data-toggle-target="outie" data-style="background:hotpink|cornflowerblue">
+            <p>data-style="background:hotpink|lightblue"</p>
+            Hello Wolrd!
+        </div>
+        <div data-toggle-target="outie">
+            <p>
+                If <span>data-style</span> is not set, all <span>data-toggle-target</span> elements will have their
+                <span>data-attr</span> set to <span>on</span> or <span>off</span>.
+            </p>
+            <div class="actions">
+                <button data-button="context" data-context="outie.page:one|two|three">LOOP PAGE</button>
+                <button data-button="context" data-context="outie.page:one">ONE</button>
+                <button data-button="context" data-context="outie.page:two">TWO</button>
+                <button data-button="context" data-context="outie.page:three">THREE</button>
+            </div>
+            <div class="actions">
+                <button data-button="context" data-context="outie.test:one|two|three">LOOP OUTIE</button>
+                <button data-button="context" data-context="outie.test:one">ONE</button>
+                <button data-button="context" data-context="outie.test:two">TWO</button>
+                <button data-button="context" data-context="outie.test:three">THREE</button>
+            </div>
+            <div class="display">
+                <div>
+                    Page: <span data-bind-text="outie.page">three</span>
+                </div>
+                <div>
+                    Outie: <span data-bind-text="outie.test">two</span>
+                </div>
+            </div>
+            <json-debug></json-debug>
+        </div>
+        <br>
+        <reactive-test scoped>
+            <button data-button="toggle" data-toggle="off" data-target="innie">TOGGLE INNIE</button>
+            <div class="mb" data-toggle-target="innie" data-style="display:block|none">
+                <p>data-style="display:block|none"</p>
+                Hello Wolrd!
+            </div>
+            <div data-toggle-target="innie">
+                <p>
+                    If <span>data-style</span> is not set, all <span>data-toggle-target</span> elements will have their
+                    <span>data-attr</span> set to <span>on</span> or <span>off</span>.
+                </p>
+                <div class="actions">
+                    <button data-button="context" data-context="innie.page:one|two|three|four|five">LOOP PAGE</button>
+                    <button data-button="context" data-context="innie.page:one">ONE</button>
+                    <button data-button="context" data-context="innie.page:two">TWO</button>
+                    <button data-button="context" data-context="innie.page:three">THREE</button>
+                    <button data-button="context" data-context="innie.page:four">FOUR</button>
+                    <button data-button="context" data-context="innie.page:five">FIVE</button>
+                </div>
+                <div class="actions">
+                    <button data-button="context" data-context="innie.test:one|two|three">LOOP INNIE</button>
+                    <button data-button="context" data-context="innie.test:one">ONE</button>
+                    <button data-button="context" data-context="innie.test:two">TWO</button>
+                    <button data-button="context" data-context="innie.test:three">THREE</button>
+                </div>
+                <div class="display">
+                    <div>
+                        Page: <span data-bind-text="innie.page">one</span>
+                    </div>
+                    <div>
+                        Innie: <span data-bind-text="innie.test">three</span>
+                    </div>
+                </div>
+                <json-debug></json-debug>
+            </div>
+        </reactive-test>
+    </reactive-test>
+</Layout>
+
+<script>
+    import '../../miniel/elements'
+</script>
+
+<style>
+:root {
+    interpolate-size: allow-keywords;
+}
+reactive-test {
+    outline: 2px solid light-dark(var(--green-3), var(--green-12));
+    outline-offset: 3px;
+    display: block;
+    border-radius: 0.75rem;
+    padding: .5rem;
+    color: light-dark(var(--stone-12), var(--stone-0));
+
+    @media (min-width: 768px) {
+        padding: .75rem;
+    }
+
+    & reactive-test {
+        /* color-scheme: dark; */
+        /* background-color: light-dark(var(--gray-0), var(--gray-10)); */
+        border-radius: .5rem;
+    }
+}
+.mb {
+    margin-block: .5rem;
+}
+button {
+    padding: .25rem 1rem;
+    border: none;
+    background-color: var(--green-7);
+    border-radius: .5rem;
+    color: var(--stone-0);
+
+    &[data-button="toggle"] {
+        transition: width .3s ease;
+
+        &::after {
+            content: attr(data-toggle);
+            margin-inline-start: .5rem;
+            text-transform: uppercase;
+        }
+    }
+}
+.actions {
+    padding-block: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+[data-attr="off"] {
+    display: none;
+}
+[data-toggle-target] {
+    background-color: light-dark(var(--gray-1), var(--gray-9));
+    border-radius: .5rem;
+
+    --duration: .3s;
+    display: block;
+    overflow: hidden;
+
+    height: max-content;
+    padding: 1rem;
+
+    &:not([data-style]) {
+        transition: display var(--duration), height var(--duration), padding var(--duration);
+        transition-behavior: allow-discrete;
+    }
+
+    & p {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    & span {
+        display: inline-block;
+        padding-inline: .25rem;
+        border-radius: .25rem;
+        background-color: light-dark(var(--green-2), var(--green-10));
+        border-bottom: 2px solid var(--green-5);
+    }
+
+    &[data-attr="off"] {
+        display: none;
+        height: 0;
+        padding: 0 1rem;
+    }
+
+    &[data-attr="on"] {
+        @starting-style {
+            padding: 0 1rem;
+            height: 0;
+        }
+    }
+}
+.display {
+    background-color: light-dark(var(--green-1), var(--green-12));
+    border-radius: .5rem;
+    padding: 1rem;
+    margin-block: .5rem;
+}
+</style>

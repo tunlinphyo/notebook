@@ -17,6 +17,11 @@ body {
     }
 }
 
+:is(html, dialog aside) {
+    scrollbar-width: thin;
+    scrollbar-color: light-dark(var(--green-7), var(--green-10)) light-dark(var(--gray-0), var(--gray-10));
+}
+
 body:has(dialog[open]) {
     overflow: hidden;
 }
@@ -125,4 +130,31 @@ body {
         white-space: nowrap;
         border-width: 0;
     }
+
+    ul[data-reading-list] {
+        list-style-type: reading-list;
+
+        li {
+            margin-block: .5rem;
+        }
+    }
+    ul[data-tool-list] {
+        list-style-type: tool-list;
+
+        li {
+            margin-block: .5rem;
+        }
+    }
+}
+
+@counter-style reading-list {
+    system: cyclic;
+    symbols: "📕" "📗" "📘" "📙" "📓" "📒" "📔";
+    suffix: "  ";
+}
+
+@counter-style tool-list {
+    system: cyclic;
+    symbols: "⛏️" "🪓" "🧰" "🔩" "⚙️" "⚖️" "🔬" "⚗️" "🔭" "✏️" "✒️" "🔨" "🛠️" "⚒️" "🔧" "🪛" "🪚" "🗜️";
+    suffix: "  ";
 }

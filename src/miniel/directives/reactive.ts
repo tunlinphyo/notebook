@@ -25,12 +25,22 @@ export class ReactiveDirective {
         })
 
         this.onClick = this.onClick.bind(this)
+        this.setInitData()
 
         this.listeners()
     }
 
     listeners() {
         this.host.addEventListener('click', this.onClick)
+    }
+
+    private setInitData() {
+        const btns = document.querySelectorAll<HTMLButtonElement>('button[data-button="toggle"]')
+        for (const btn of btns) {
+            if (btn.hasAttribute('data-toggle')) {
+                this.toggle(btn.dataset, btn.dataset.toggle === 'on')
+            }
+        }
     }
 
     private onClick(e: Event) {
@@ -82,8 +92,7 @@ export class ReactiveDirective {
                 if (property in elem.style) {
                     elem.style[property as any] = isOn ? on : off
                 }
-            }
-            if (elem.dataset.attr) {
+            } else {
                 elem.dataset.attr = dataset.toggle
             }
         }

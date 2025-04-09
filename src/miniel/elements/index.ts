@@ -9,4 +9,6 @@ import "./list/dynamic-list"
 import "./list/dynamic-item"
 
 import "./form-debug"
+import "./reactive-test"
+import "./json-debug"
 

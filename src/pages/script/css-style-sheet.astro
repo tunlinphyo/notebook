@@ -1,0 +1,74 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+import PageTitle from "../../components/PageTitle.astro";
+import FileName from "../../components/FileName.astro";
+---
+
+<Layout>
+    <PageTitle>CSSStyleSheet</PageTitle>
+
+    <CodeBlock code={`let stylesheet = new CSSStyleSheet({ media: "print" });
+console.log(stylesheet.media);`} lang="js" />
+
+    <h3>Sharing stylesheets with a shadow DOM</h3>
+    <CodeBlock code={`// Create an element in the document and then create a shadow root:
+const node = document.createElement("div");
+const shadow = node.attachShadow({ mode: "open" });
+
+//Adopt the sheet into the shadow DOM
+shadow.adoptedStyleSheets = [sheet];`} lang="js" />
+
+    <h3>With Custom Element</h3>
+    <CodeBlock code={`export function css(strings: TemplateStringsArray, ...values: any[]): CSSStyleSheet {
+    const cssString = strings.reduce((acc, str, i) => {
+        const val = values[i];
+        const serialized = val == null ? '' : String(val);
+        return acc + str + serialized;
+    }, '');
+
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(cssString);
+
+    return sheet;
+}`} lang="ts" />
+
+    <p>Custom Element</p>
+    <CodeBlock code={`export abstract class MiniEl extends HTMLElement {
+    static states?: State<any>;
+
+    constructor() {
+        super();
+        this.renderRoot = this.attachShadow({ mode: 'open' });
+
+        const ctor = this.constructor as typeof MiniEl;
+        if (ctor.styles?.length) {
+            this.renderRoot.adoptedStyleSheets = ctor.styles;
+        }
+    }
+}`} lang="ts" />
+
+    <h3>Usage</h3>
+    <CodeBlock code={`import { css, MiniEl } from './mini-element'
+
+const hostStyle = css\`
+    :host {
+        display: block;
+    }
+    ::slotted(.flex) {
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+\`
+
+export class CustomElement extends MiniEl {
+    static styles = [ hostStyle ];
+
+    constructor() {
+        super();
+    }
+}
+
+customElements.define('custom-element', CustomElement);`} lang="ts" />
+</Layout>

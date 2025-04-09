@@ -8,57 +8,79 @@ import FileName from "../../components/FileName.astro";
 <Layout>
     <PageTitle>ReactiveDirective</PageTitle>
     <p>
-        ReactiveDirective used <a href="/type-script/context">Context</a>
+        ReactiveDirective used <a href="/script/context">Context</a>
+    </p>
+    <p>
+        Example: <a href="/examples/reactive-directive">ReactiveDirective</a>.
     </p>
 
     <h3>Usage</h3>
-    <CodeBlock code={`<reactive-test>
-    <button data-button="toggle" data-toggle="on" data-target="outie">TOGGLE</button>
-    <div data-toggle-target="outie" data-style="height:auto|0">Hello Wolrd!</div>
-    <div data-toggle-target="outie" data-attr="on">Hello Wolrd! Again!</div>
-    <div class="actions">
-        <button data-button="context" data-context="outie.page:one|two|three">CONTEXT</button>
-        <button data-button="context" data-context="outie.page:one">ONE</button>
-        <button data-button="context" data-context="outie.page:two">TWO</button>
-        <button data-button="context" data-context="outie.page:three">THREE</button>
+    <CodeBlock code={`<reactive-test scoped>
+    <button data-button="toggle" data-toggle="on" data-target="outie">TOGGLE OUTIE</button>
+    <div data-toggle-target="outie" data-style="background:hotpink|cornflowerblue">
+        <p>data-style="background:hotpink|lightblue"</p>
+        Hello Wolrd!
     </div>
-    <div class="actions">
-        <button data-button="context" data-context="outie.test:one|two|three">CONTEXT</button>
-        <button data-button="context" data-context="outie.test:one">ONE</button>
-        <button data-button="context" data-context="outie.test:two">TWO</button>
-        <button data-button="context" data-context="outie.test:three">THREE</button>
-    </div>
-    <div>
-        <div>
-            Page: <span data-bind-text="outie.page"></span>
+    <div data-toggle-target="outie">
+        <p>
+            If <span>data-style</span> is not set, all <span>data-toggle-target</span> elements will have their
+            <span>data-attr</span> set to <span>on</span> or <span>off</span>.
+        </p>
+        <div class="actions">
+            <button data-button="context" data-context="outie.page:one|two|three">LOOP PAGE</button>
+            <button data-button="context" data-context="outie.page:one">ONE</button>
+            <button data-button="context" data-context="outie.page:two">TWO</button>
+            <button data-button="context" data-context="outie.page:three">THREE</button>
         </div>
-        <div>
-            Test: <span data-bind-text="outie.test"></span>
+        <div class="actions">
+            <button data-button="context" data-context="outie.test:one|two|three">LOOP OUTIE</button>
+            <button data-button="context" data-context="outie.test:one">ONE</button>
+            <button data-button="context" data-context="outie.test:two">TWO</button>
+            <button data-button="context" data-context="outie.test:three">THREE</button>
         </div>
+        <div class="display">
+            <div>
+                Page: <span data-bind-text="outie.page"></span>
+            </div>
+            <div>
+                Outie: <span data-bind-text="outie.test"></span>
+            </div>
+        </div>
+        <json-debug></json-debug>
     </div>
+    <br>
     <reactive-test scoped>
-        <button data-button="toggle" data-toggle="on" data-target="innie">TOGGLE</button>
-        <div data-toggle-target="innie" data-style="display:block|none">Hello Wolrd!</div>
-        <div data-toggle-target="innie" data-attr="on">Hello Wolrd! Again!</div>
-        <div class="actions">
-            <button data-button="context" data-context="innie.page:one|two|three">CONTEXT</button>
-            <button data-button="context" data-context="innie.page:one">ONE</button>
-            <button data-button="context" data-context="innie.page:two">TWO</button>
-            <button data-button="context" data-context="innie.page:three">THREE</button>
+        <button data-button="toggle" data-toggle="off" data-target="innie">TOGGLE INNIE</button>
+        <div data-toggle-target="innie" data-style="display:block|none">
+            <p>data-style="display:block|none"</p>
+            Hello Wolrd!
         </div>
-        <div class="actions">
-            <button data-button="context" data-context="innie.test:one|two|three">CONTEXT</button>
-            <button data-button="context" data-context="innie.test:one">ONE</button>
-            <button data-button="context" data-context="innie.test:two">TWO</button>
-            <button data-button="context" data-context="innie.test:three">THREE</button>
-        </div>
-        <div>
-            <div>
-                Page: <span data-bind-text="innie.page"></span>
+        <div data-toggle-target="innie">
+            <p>
+                If <span>data-style</span> is not set, all <span>data-toggle-target</span> elements will have their
+                <span>data-attr</span> set to <span>on</span> or <span>off</span>.
+            </p>
+            <div class="actions">
+                <button data-button="context" data-context="innie.page:one|two|three">LOOP PAGE</button>
+                <button data-button="context" data-context="innie.page:one">ONE</button>
+                <button data-button="context" data-context="innie.page:two">TWO</button>
+                <button data-button="context" data-context="innie.page:three">THREE</button>
             </div>
-            <div>
-                Test: <span data-bind-text="innie.test"></span>
+            <div class="actions">
+                <button data-button="context" data-context="innie.test:one|two|three">LOOP INNIE</button>
+                <button data-button="context" data-context="innie.test:one">ONE</button>
+                <button data-button="context" data-context="innie.test:two">TWO</button>
+                <button data-button="context" data-context="innie.test:three">THREE</button>
             </div>
+            <div class="display">
+                <div>
+                    Page: <span data-bind-text="innie.page"></span>
+                </div>
+                <div>
+                    Innie: <span data-bind-text="innie.test"></span>
+                </div>
+            </div>
+            <json-debug></json-debug>
         </div>
     </reactive-test>
 </reactive-test>`} lang="html" />
@@ -81,8 +103,8 @@ export class ReactiveTest extends MiniEl {
 
     protected render() {
         return html\`
-            <slot></slot>\
-        `
+            <slot></slot>
+        \`
     }
 }
 
@@ -111,12 +133,22 @@ export class ReactiveDirective {
         })
 
         this.onClick = this.onClick.bind(this)
+        this.setInitData()
 
         this.listeners()
     }
 
     listeners() {
         this.host.addEventListener('click', this.onClick)
+    }
+
+    private setInitData() {
+        const btns = document.querySelectorAll<HTMLButtonElement>('button[data-button="toggle"]')
+        for (const btn of btns) {
+            if (btn.hasAttribute('data-toggle')) {
+                this.toggle(btn.dataset, btn.dataset.toggle === 'on')
+            }
+        }
     }
 
     private onClick(e: Event) {

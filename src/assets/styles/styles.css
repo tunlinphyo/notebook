@@ -48,7 +48,7 @@
 
     ::view-transition-old(aside) {
         animation-name: SlideOut;
-        animation-timing-function: var(--ease-spring-1);
+        animation-timing-function: var(--ease-5);
     }
 }
 

@@ -9,19 +9,31 @@
 <style>
 @layer layout {
     section {
+        /* --theme-bg: light-dark(#fff, var(--gray-10)); */
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-block: 5vh;
         position: relative;
         z-index: 0;
+        padding-block: 5vh;
+
+        /* @media (min-width: 992px) {
+            padding-block: 8vh;
+        } */
     }
 
     article {
         width: 90%;
         max-width: 800px;
+        /* background-color: var(--theme-bg);
+        box-shadow: 0 0 0 5vh var(--theme-bg);
+
+        @media (min-width: 992px) {
+            border-radius: var(--radius-1);
+            box-shadow: 0 0 0 40px var(--theme-bg);
+        } */
     }
 }
 </style>

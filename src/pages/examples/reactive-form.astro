@@ -1,18 +1,24 @@
 ---
 import Layout from "../../layouts/Layout.astro"
-import CodeBlock from "../../components/CodeBlock.astro"
 import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
 ---
 
 <Layout>
     <PageTitle>ReactiveFrom</PageTitle>
+    <p>
+        Check the implementation of <a href="/html/reactive-form">ReactiveFrom</a>.
+    </p>
 
     <reactive-form>
         <div class="input-group">
             <input type="text" name="name" placeholder="Name" />
             <input type="email" name="email" placeholder="Email" />
             <input type="text" name="address" placeholder="Address" />
+            <input type="number"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                name="age"
+                placeholder="Age" />
         </div>
         <select name="select">
             <option value="" selected>Select</option>
@@ -50,6 +56,7 @@ import FileName from "../../components/FileName.astro";
             <div>Name: <span data-bind-text="name"></span></div>
             <div>Email: <span data-bind-text="email"></span></div>
             <div>Address: <span data-bind-text="address"></span></div>
+            <div>Age: <span data-bind-text="age"></span></div>
             <div>Select: <span data-bind-text="select"></span></div>
             <div>Gender: <span data-bind-text="gender"></span></div>
             <div>Job: <span data-bind-text="job"></span></div>
@@ -119,10 +126,11 @@ select {
 }
 .textarea {
     padding-block: 20px;
-    
+
     textarea {
         width: 100%;
         min-height: 120px;
+        padding: 1rem;
     }
 }
 </style>

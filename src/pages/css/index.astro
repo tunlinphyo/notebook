@@ -1,0 +1,120 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PageTitle from "../../components/PageTitle.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+---
+
+<Layout>
+    <PageTitle>CSS</PageTitle>
+
+    <p>
+        Check CSS support <a href="https://caniuse.com/" target="_blank">Can I use _?</a>
+    </p>
+
+    <h3>Layer</h3>
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer" target="_blank">@layer</a>
+    </p>
+
+    <CodeBlock code={`@layer reset, openprops, theme, utils, layouts, components, pages;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap') layer(theme);
+@import url("https://unpkg.com/open-props") layer(openprops);
+
+@import url(./utils/reset.css) layer(reset);
+@import url(./utils/theme.css) layer(theme);
+@import url(./utils/utils.css) layer(utils);
+
+@import url(./utils/copy.css) layer(components);
+
+@layer page {
+    color: light-dark(#333, #EEE);
+    background: light-dark(#EEE, #000);
+}`} lang="css" />
+
+    <h3>Property</h3>
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@property" target="_blank">@property</a>
+    </p>
+    <CodeBlock code={`@property --rotation {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 45deg;
+}`} lang="css" />
+
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@property/syntax">Syntax</a>
+    </p>
+    <CodeBlock code={`/* A data type name */
+syntax: "<color>";
+
+/* A '|' combinator for multiple data types */
+syntax: "<length> | <percentage>";
+
+/* Space-separated list of values */
+syntax: "<color>+";
+
+/* Comma-separated list of values */
+syntax: "<length>#";
+
+/* Keywords */
+syntax: "small | medium | large";
+
+/* Combination of data type and keyword */
+syntax: "<length> | auto";
+
+/* Universal syntax value */
+syntax: "*";`} lang="css" />
+
+    <h3>Starting Style</h3>
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank">@starting-style</a>
+    </p>
+    <p>
+        Can I use <a href="https://caniuse.com/?search=interpolate-size%3A%20allow-keywords%3B" target="_blank">interpolate-size: allow-keywords;</a>
+    </p>
+    <CodeBlock code={`:root {
+    interpolate-size: allow-keywords;
+}
+.elem {
+    display: none;
+    height: 0;
+    padding: 0 1rem;
+    transition-property: display, height, padding;
+    transition-duration: 0.3s;
+    transition-behavior: allow-discrete;
+
+    .show {
+        display: block;
+        height: max-content;
+        padding: 1rem;
+
+        @starting-style {
+            padding: 0 1rem;
+            height: 0;
+        }
+    }
+}`} lang="css" />
+
+    <h3>Counter Style</h3>
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style" target="_blank">@counter-style</a>
+    </p>
+    <CodeBlock code={`@counter-style reading-list {
+    system: cyclic;
+    symbols: "📕" "📗" "📘" "📙" "📓" "📒" "📔";
+    suffix: "  ";
+}
+
+@counter-style tool-list {
+    system: cyclic;
+    symbols: "⛏️" "🪓" "🧰" "🔩" "⚙️" "⚖️" "🔬" "⚗️" "🔭" "✏️" "✒️" "🔨" "🛠️" "⚒️" "🔧" "🪛" "🪚" "🗜️";
+    suffix: "  ";
+}
+ul[data-reading-list] {
+    list-style-type: reading-list;
+}
+ul[data-tool-list] {
+    list-style-type: tool-list;
+}`} lang="css" />
+</Layout>

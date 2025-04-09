@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+import PageTitle from "../../components/PageTitle.astro";
+---
+
+<Layout>
+    <PageTitle>HTML</PageTitle>
+
+    <h3>Input</h3>
+    <p>
+        Number keyboard for mobile.
+    </p>
+    <CodeBlock code={`<input type="number"
+    inputmode="numeric"
+    pattern="[0-9]*"
+    name="amount"
+    placeholder="0.00" />`} lang="html" />
+</Layout>
