@@ -5,7 +5,7 @@ import { reactiveContext } from "../directives"
 const hostStyle = css`
     :host {
         display: block;
-        background-color: light-dark(var(--green-1), var(--green-12));
+        background-color: Canvas;
         border-radius: .5rem;
         padding: 1rem;
         margin-block: .5rem;

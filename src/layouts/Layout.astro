@@ -1,6 +1,9 @@
 ---
 import '../assets/styles/styles.css'
 import MainLayout from "./MainLayout.astro"
+import type { ContentItem } from './types'
+const { contents } = Astro.props
+const contentsTyped: ContentItem[] = contents
 ---
 
 <!doctype html>
@@ -13,7 +16,7 @@ import MainLayout from "./MainLayout.astro"
 		<title>Notebook</title>
 	</head>
 	<body>
-		<MainLayout>
+		<MainLayout contents={contents}>
 			<slot />
 		</MainLayout>
 	</body>

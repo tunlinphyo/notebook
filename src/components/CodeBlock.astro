@@ -4,55 +4,64 @@ import { Code } from 'astro:components';
 ---
 
 <div class="code-block">
-  <button class="copy-btn" data-button="code-copy">Copy</button>
-  <Code code={code} lang={lang} />
+    <button class="copy-btn" data-button="code-copy">Copy</button>
+    <Code code={code} lang={lang} theme="github-dark" />
 </div>
 
 <script>
-    const buttonEl = document.querySelector<HTMLButtonElement>('[data-button="code-copy"]')
-    buttonEl?.addEventListener('click', (e: Event) => {
-        const target = e.target as HTMLButtonElement
-        if (target.matches("[data-copy-btn]")) {
+    const buttonEls = document.querySelectorAll<HTMLButtonElement>('[data-button="code-copy"]')
+
+    for(const buttonEl of buttonEls) {
+        buttonEl.addEventListener('click', (e: Event) => {
             console.log(e.target)
+            const target = e.target as HTMLButtonElement
             const codeEl = target.nextElementSibling?.querySelector('code');
             if (codeEl && codeEl.textContent) {
-                navigator.clipboard.writeText(codeEl.textContent.trim());
-                target.textContent = "Copied!";
-                setTimeout(() => (target.textContent = "Copy"), 1500);
+                navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
+                    target.textContent = "Copied!";
+                    setTimeout(() => (target.textContent = "Copy"), 1500);
+                })
             }
-        }
-    })
+        })
+    }
 </script>
 
 <style>
-  .code-block {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
+@layer components {
+    .code-block {
+        grid-column: edge;
+        position: relative;
+        margin-bottom: 1.5rem;
 
-  .copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.75rem;
-    background: #444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+        display: grid;
+    }
 
-  pre {
-    overflow-x: auto;
-    padding: 1rem;
-    padding: var(--size-3);
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    font-size: .95rem;
+    .copy-btn {
+        color-scheme: dark;
+        position: absolute;
+        z-index: calc(inifinity);
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        background-color: ButtonFace;
+        color: ButtonText;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-    > * {
-        font-family: DM Mono, serif;
+    pre {
+        overflow-x: auto;
+        padding: 1rem;
+        padding: var(--size-3);
+        border-radius: var(--radius-2);
+        margin-bottom: 1rem;
+        font-size: .9rem;
+
+        > * {
+            font-family: DM Mono, serif;
+        }
     }
 }
 </style>

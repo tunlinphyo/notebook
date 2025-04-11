@@ -6,12 +6,12 @@
 @import url("https://unpkg.com/open-props") layer(openprops);
 /* @import url('/src/styles/prism-tomorrow.css') layer(theme); */
 
-@import "prismjs/themes/prism-tomorrow.css";
+/* @import "prismjs/themes/prism-tomorrow.css"; */
 
 @import url(./utils/reset.css) layer(reset);
 @import url(./utils/theme.css) layer(theme);
 @import url(./utils/utils.css) layer(utils);
-@import url(./utils/colors.css) layer(utils);
+/* @import url(./utils/colors.css) layer(utils); */
 
 @import url(./utils/copy.css) layer(components);
 
@@ -21,24 +21,31 @@
     navigation: auto;
 }
 
-::view-transition-group(root) {
+/* ::view-transition-group(root) {
     animation-duration: .5s;
-}
+} */
 
-::view-transition-old(root) {
+/* ::view-transition-old(article) {
     animation-name: PageOut;
     animation-timing-function: var(--ease-spring-3);
 }
-::view-transition-new(root) {
+::view-transition-new(article) {
     animation-name: PageIn;
     animation-timing-function: var(--ease-spring-1);
-}
+} */
 
 ::view-transition-old(pageTitle) {
     animation-name: TitleOut;
 }
 ::view-transition-new(pageTitle) {
     animation-name: TitleIn;
+}
+
+::view-transition-old(toc) {
+    animation-name: TOCOut;
+}
+::view-transition-new(toc) {
+    animation-name: TOCIn;
 }
 
 @media (max-width: 991px) {
@@ -52,21 +59,18 @@
     }
 }
 
-@keyframes PageIn {
+@keyframes TOCIn {
     from {
-        translate: min(100vw, 700px) 0;
-    }
-    to {
-        translate: 0 0;
+        translate: 100% 0;
     }
 }
-@keyframes PageOut {
+@keyframes TOCOut {
     from {
         translate: 0 0;
         opacity: 1;
     }
     to {
-        translate: max(-50vw, -300px) 0;
+        translate: -100% 0;
         opacity: 0;
     }
 }

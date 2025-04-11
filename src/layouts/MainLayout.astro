@@ -1,11 +1,14 @@
 ---
 import Aside from "./utils/Aside.astro"
 import MainContent from "./utils/MainContent.astro"
+import type { ContentItem } from './types'
+const { contents } = Astro.props
+const contentsTyped: ContentItem[] = contents
 ---
 
 <main>
     <Aside />
-    <MainContent>
+    <MainContent contents={contents}>
         <slot />
     </MainContent>
 </main>

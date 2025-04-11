@@ -1,15 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import PageTitle from "../components/PageTitle.astro"
+import SectionTitle from "../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'note-reading',
+        name: 'Reading'
+    },
+    {
+        url: 'note-tools',
+        name: 'Tools'
+    }
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>Note Book</PageTitle>
 
-    <h3>Reading</h3>
+    <SectionTitle id="note-reading">Reading</SectionTitle>
     <ul data-reading-list>
         <li>
-            <a href="https://www.joshwcomeau.com/css/understanding-layout-algorithms/">Josh W Comeau</a>
+            <a href="https://www.joshwcomeau.com/css/understanding-layout-algorithms/" target="_blank">Josh W Comeau</a>
         </li>
         <li>
             <a href="https://www.bram.us" target="_blank">Bram.us</a>
@@ -36,14 +48,14 @@ import PageTitle from "../components/PageTitle.astro"
             <a href="https://ishadeed.com" target="_blank">Ahmad Shadeed</a>
         </li>
         <li>
-            <a href="https://www.smashingmagazine.com/articles/">Smashing Magazine</a>
+            <a href="https://www.smashingmagazine.com/articles/" target="_blank">Smashing Magazine</a>
         </li>
         <li>
             <a href="https://smashing-freiburg-2024.netlify.app" target="_blank">Symphony Of The Web (2024)</a>
         </li>
     </ul>
 
-    <h3>Tools</h3>
+    <SectionTitle id="note-tools">Tools</SectionTitle>
     <ul data-tool-list>
         <li>
             <a href="https://caniuse.com/" target="_blank">Can I use _?</a>
@@ -61,10 +73,10 @@ import PageTitle from "../components/PageTitle.astro"
             <a href="https://app.leonardo.ai/auth/login?callbackUrl=%2Fimage-generation" target="_blank">Leonardo.Ai</a>
         </li>
         <li>
-            <a href="https://www.flaticon.com/?k=1623562445513">Falt Icons</a>
+            <a href="https://www.flaticon.com/?k=1623562445513" target="_blank">Falt Icons</a>
         </li>
         <li>
-            <a href="https://editor.p5js.org/">p5 Editor</a>
+            <a href="https://editor.p5js.org/" target="_blank">p5 Editor</a>
         </li>
         <li>
             <a href="https://anicollection.github.io/#/" target="_blank">Keyframe animations</a>

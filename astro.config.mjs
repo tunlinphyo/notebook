@@ -12,7 +12,7 @@ export default defineConfig({
         }),
     ],
     markdown: {
-        syntaxHighlight: 'shiki', // or 'prism' or false
+        syntaxHighlight: 'shiki',
         rehypePlugins: [rehypeCopyButton],
     },
 });

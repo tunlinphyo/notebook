@@ -3,7 +3,7 @@ import Nav from "./Nav.astro"
 ---
 
 <dialog id="aside">
-    <aside>
+    <aside id="mainAside">
         <header>
             <a href="/">
                 <svg viewBox="0 0 24 24">
@@ -17,12 +17,6 @@ import Nav from "./Nav.astro"
             <button id="gotoMain" data-button>Go to Main Content</button>
         </header>
         <Nav />
-        <footer>
-            <small>
-                <span>&copy;</span>
-                2025
-            </small>
-        </footer>
     </aside>
 </dialog>
 
@@ -64,7 +58,23 @@ import Nav from "./Nav.astro"
 
         const first = focusables[0] as HTMLElement;
         if (first) first.focus();
+    }
+
+    const aside = document.getElementById('#mainAside')!
+
+    // Save scroll position before navigating away
+    window.addEventListener('beforeunload', () => {
+        alert(aside.scrollTop)
+        sessionStorage.setItem('scrollY', `${aside.scrollTop}`)
+    })
+
+    // Restore scroll position on load
+    window.addEventListener('load', () => {
+        const scrollY = sessionStorage.getItem('scrollY')
+        if (scrollY !== null) {
+            aside.scrollTo(0, parseInt(scrollY))
         }
+    })
 </script>
 
 <style>
@@ -75,10 +85,9 @@ import Nav from "./Nav.astro"
         aspect-ratio: 1;
         box-shadow: var(--shadow-3);
         border-radius: var(--radius-blob-4);
-        background-color: light-dark(#fff, var(--gray-8));
-        /* color: light-dark(var(--gray-10), var(--gray-3)); */
-        color: light-dark(var(--green-7), var(--green-4));
-        border: 2px solid light-dark(var(--green-4), var(--green-4));
+        background-color: Canvas;
+        color: CanvasText;
+        border: 2px solid AccentColor;
 
         position: fixed;
         z-index: calc(infinity);
@@ -100,8 +109,7 @@ import Nav from "./Nav.astro"
         view-transition-name: aside;
         border: none;
         padding: 0;
-        --header-height: 100px;
-        background-color: light-dark(#fff, var(--gray-8));
+        background-color: Canvas;
 
         @media (max-width: 991px) {
             --duration: .4s;
@@ -115,9 +123,12 @@ import Nav from "./Nav.astro"
 
             position: fixed;
             z-index: calc(infinity);
-            overflow: hidden;
 
             translate: -110% 0;
+
+            &::backdrop {
+                background-color: light-dark(#6669, #333C);
+            }
 
             &, &::backdrop {
                 transition: display var(--duration), translate var(--duration) var(--ease-5), opacity var(--duration);
@@ -158,6 +169,7 @@ import Nav from "./Nav.astro"
             min-inline-size: 30ch;
             box-shadow: none;
             overflow-y: auto;
+            border-inline-end: 1px solid ButtonFace;
 
             grid-template-columns: 1fr;
             grid-template-rows: auto 1fr;
@@ -171,12 +183,6 @@ import Nav from "./Nav.astro"
         transition: all .3s var(--ease-1);
     }
 
-    aside {
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-    }
-
     header {
         width: 100%;
         height: var(--header-height);
@@ -184,11 +190,11 @@ import Nav from "./Nav.astro"
         justify-content: flex-start;
         align-items: center;
         padding: 0 var(--size-3);
-        border-block-end: var(--border-size-1) solid light-dark(var(--gray-2), var(--gray-7));
+        border-block-end: var(--border-size-1) solid ButtonFace;
 
         position: sticky;
         z-index: 1;
-        background-color: light-dark(#fff, var(--gray-8));
+        background-color: Canvas;
         top: 0;
 
         @media (min-width: 992px) {
@@ -200,19 +206,20 @@ import Nav from "./Nav.astro"
             gap: var(--size-1);
             text-decoration: none;
             border-radius: var(--radius-2);
+            /* color: LinkText; */
 
             cursor: pointer;
             outline: 2px solid transparent;
             outline-offset: -2px;
             transition: outline-offset .5s var(--ease-spring-1);
 
-            &:focus {
-                outline-color: var(--secondary);
+            &:focus-visible {
+                outline-color: AccentColor;
                 outline-offset: 6px;
             }
             & svg {
                 height: 56px;
-                color: var(--gray-6);
+                color: GrayText;
             }
         }
 
@@ -220,41 +227,16 @@ import Nav from "./Nav.astro"
             display: block;
             & span {
                 display: block;
-                color: light-dark(var(--gray-7), var(--gray-3));
+                color: CanvasText;
                 font-size: 1.6rem;
                 font-weight: 900;
                 line-height: 1;
 
                 &:last-child {
-                    color: light-dark(var(--green-7), var(--green-4));
+                    color: AccentColor;
                     font-weight: 200;
                     font-size: 2rem;
                 }
-            }
-        }
-    }
-
-    footer {
-        width: 100%;
-        height: 32px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 var(--size-3);
-        border-block-start: var(--border-size-1) solid light-dark(var(--gray-2), var(--gray-7));
-
-        position: sticky;
-        z-index: 1;
-        background-color: light-dark(#fff, var(--gray-9));
-        bottom: 0;
-
-        & small {
-            display: flex;
-            gap: var(--size-1);
-            color: var(--gray-6);
-
-            & span {
-                scale: 1.2;
             }
         }
     }
@@ -264,7 +246,7 @@ import Nav from "./Nav.astro"
         right: var(--size-3);
         border: none;
         border-radius: var(--radius-drawn-4);
-        background-color: light-dark(var(--gray-1), var(--gray-8));
+        background-color: ButtonFace;
         box-shadow: var(--shadow-3);
         pointer-events: none;
         opacity: 0;

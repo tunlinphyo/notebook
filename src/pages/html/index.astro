@@ -1,13 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'html-input',
+        name: 'Input Number'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>HTML</PageTitle>
 
     <h3>Input</h3>
+    <SectionTitle id="html-input">Input Number</SectionTitle>
     <p>
         Number keyboard for mobile.
     </p>

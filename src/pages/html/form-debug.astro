@@ -1,14 +1,30 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'form-debug-example',
+        name: 'Example'
+    },
+    {
+        url: 'form-debug-code',
+        name: 'FormDebug'
+    },
+    {
+        url: 'form-debug-styles',
+        name: 'Styles'
+    }
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>FromDebug</PageTitle>
 
-    <h3>Usage</h3>
+    <SectionTitle id="form-debug-example">Example</SectionTitle>
     <CodeBlock code={`<reactive-form>
     <div>
         <input type="text" name="name" placeholder="Name" />
@@ -22,27 +38,9 @@ import FileName from "../../components/FileName.astro";
     </form-debug>
 </reactive-form>`} lang="html" />
 
+    <SectionTitle id="form-debug-code">FormDebug</SectionTitle>
     <FileName file="form-debug.ts" />
-    <CodeBlock code={`import { css, html, MiniEl } from "@miniel"
-import { formContext, updateBindings } from "@miniel/elements"
-import { ContextConsumer } from "@miniel/context"
-
-const hostStyle = css\`
-    :host {
-        display: grid;
-        padding: 1rem;
-        background: rgba(128, 128, 128, 0.3);
-        background-blend-mode: luminosity;
-        backdrop-filter: blur(50px);
-        border-radius: 24px;
-
-        h4 {
-            margin: 0;
-        }
-    }
-\`
-
-export class FormDebug extends MiniEl {
+    <CodeBlock code={`export class FormDebug extends MiniEl {
     private consumer!: ContextConsumer<Record<string, any>>
 
     static styles = [ hostStyle ]
@@ -68,4 +66,21 @@ export class FormDebug extends MiniEl {
 }
 
 customElements.define('form-debug', FormDebug)`} lang="ts" />
+
+    <SectionTitle id="form-debug-styles">Styles</SectionTitle>
+    <FileName file="styles.ts" />
+    <CodeBlock code={`const hostStyle = css\`
+    :host {
+        display: grid;
+        padding: 1rem;
+        background: rgba(128, 128, 128, 0.3);
+        background-blend-mode: luminosity;
+        backdrop-filter: blur(50px);
+        border-radius: 24px;
+
+        h4 {
+            margin: 0;
+        }
+    }
+\``} lang="ts" />
 </Layout>

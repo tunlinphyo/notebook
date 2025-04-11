@@ -11,16 +11,16 @@ import PageTitle from "../../components/PageTitle.astro";
 
     <reactive-form>
         <div class="input-group">
-            <input type="text" name="name" placeholder="Name" />
-            <input type="email" name="email" placeholder="Email" />
-            <input type="text" name="address" placeholder="Address" />
-            <input type="number"
+            <input data-form-input type="text" name="name" placeholder="Name" />
+            <input data-form-input type="email" name="email" placeholder="Email" />
+            <input data-form-input type="text" name="address" placeholder="Address" />
+            <input data-form-input type="number"
                 inputmode="numeric"
                 pattern="[0-9]*"
                 name="age"
                 placeholder="Age" />
         </div>
-        <select name="select">
+        <select data-form-input name="select">
             <option value="" selected>Select</option>
             <option value="one">One</option>
             <option value="two">Two</option>
@@ -29,28 +29,28 @@ import PageTitle from "../../components/PageTitle.astro";
         </select>
         <div class="radio-group">
             <label>
-                <input type="radio" name="gender" value="male"> Male
+                <input data-form-check type="radio" name="gender" value="male"> Male
             </label>
             <label>
-                <input type="radio" name="gender" value="female">Female
+                <input data-form-check type="radio" name="gender" value="female">Female
             </label>
             <label>
-                <input type="radio" name="gender" value="other"> Other
+                <input data-form-check type="radio" name="gender" value="other"> Other
             </label>
         </div>
         <div class="checkbox-group">
             <label>
-                <input type="checkbox" name="job" value="doctor"> Doctor
+                <input data-form-check type="checkbox" name="job" value="doctor"> Doctor
             </label>
             <label>
-                <input type="checkbox" name="job" value="engineer">Engineer
+                <input data-form-check type="checkbox" name="job" value="engineer">Engineer
             </label>
             <label>
-                <input type="checkbox" name="job" value="teacher"> Teacher
+                <input data-form-check type="checkbox" name="job" value="teacher"> Teacher
             </label>
         </div>
         <div class="textarea">
-            <textarea name="textarea"></textarea>
+            <textarea data-form-input name="textarea"></textarea>
         </div>
         <form-debug>
             <div>Name: <span data-bind-text="name"></span></div>

@@ -2,6 +2,13 @@
     display: none;
 }
 
+/* @supports (background-color: -apple-system-control-background)
+  and (color: text) {
+    [data-form-input] {
+        background-color: light-dark(var(--gray-0), var(--gray-10));
+    }
+} */
+
 @media (hover: hover) and (pointer: fine) {
     [data-button],
     [data-nav],
@@ -12,8 +19,8 @@
         outline-offset: -2px;
         transition: outline-offset .5s var(--ease-spring-1);
 
-        &:focus {
-            outline-color: var(--secondary);
+        &:focus-visible {
+            outline-color: AccentColor;
             outline-offset: 2px;
         }
     }
@@ -24,7 +31,7 @@
         transition: .5s var(--ease-spring-1);
 
         &:has(input:focus) {
-            outline-color: var(--secondary);
+            outline-color: AccentColor;
             outline-offset: 2px;
         }
     }

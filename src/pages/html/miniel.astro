@@ -1,11 +1,34 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'miniel-example',
+        name: 'Example'
+    },
+    {
+        url: 'miniel-class',
+        name: 'MiniEl Class'
+    },
+    {
+        url: 'miniel-property-guard',
+        name: 'PropertyGuard'
+    },
+    {
+        url: 'miniel-html',
+        name: 'html'
+    },
+    {
+        url: 'miniel-css',
+        name: 'css'
+    }
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>MiniEl</PageTitle>
     <p>
         The MiniEl class is an abstract base class designed for building lightweight, reactive Web Components using native browser APIs.
@@ -18,7 +41,7 @@ import FileName from "../../components/FileName.astro";
         adoptedStyleSheets API — a modern, fast way to apply scoped CSS.
     </p>
 
-    <h3>Usage</h3>
+    <SectionTitle id="miniel-example">Example</SectionTitle>
     <CodeBlock code={`const hostStyle = css\`
     :host {
         display: block;
@@ -45,7 +68,8 @@ export class MiniTest extends MiniEl {
 
 customElements.define('mini-test', MiniTest)`} lang="ts" />
 
-    <FileName file="miniel.ts" />
+    <SectionTitle id="miniel-class">MiniEl Class</SectionTitle>
+    <!-- <FileName file="miniel.ts" /> -->
     <CodeBlock code={`export abstract class MiniEl extends HTMLElement {
     protected renderRoot: ShadowRoot
     static styles?: CSSStyleSheet[]
@@ -130,6 +154,8 @@ customElements.define('mini-test', MiniTest)`} lang="ts" />
         }
     }
 }`} lang="ts" />
+
+    <SectionTitle id="miniel-property-guard">PropertyGuard</SectionTitle>
     <CodeBlock code={`export type PropertyGuard = {
     converter: (value: string) => any // used for runtime conversion
 }
@@ -142,7 +168,7 @@ export type PropertyChange<T extends PropertyDefinition> = {
     newValue: ReturnType<T[keyof T]['converter']>
 }`} lang="ts" />
 
-    <FileName file="html.ts" />
+    <SectionTitle id="miniel-html">html</SectionTitle>
     <CodeBlock code={`export class RawHTML {
     constructor(public readonly value: string) {}
 }
@@ -166,7 +192,7 @@ export function html(strings: TemplateStringsArray, ...values: any[]): Node {
     return template.content.cloneNode(true)
 }`} lang="ts" />
 
-    <FileName file="css.ts" />
+    <SectionTitle id="miniel-css">css</SectionTitle>
     <CodeBlock code={`export function css(strings: TemplateStringsArray, ...values: any[]): CSSStyleSheet {
     const cssString = strings.reduce((acc, str, i) => {
         const val = values[i];

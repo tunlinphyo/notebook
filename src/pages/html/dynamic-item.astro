@@ -1,18 +1,31 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'dynamic-item-example',
+        name: 'Example'
+    },
+    {
+        url: 'dynamic-item-code',
+        name: 'DynamicItem'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>DynamicItem</PageTitle>
 
-    <h3>Usage</h3>
+    <SectionTitle id="dynamic-item-example">Example</SectionTitle>
     <p>
-        Check at <a href="/html/dynamic-list">DynamicList</a>
+        Check the code example at <a href="/html/dynamic-list">DynamicList</a>.
     </p>
 
+    <SectionTitle id="dynamic-item-code">DynamicItem</SectionTitle>
     <FileName file="dynamic-item.ts" />
     <CodeBlock code={`export class DynamicItem<T extends WithId> extends HTMLElement {
     protected renderRoot: ShadowRoot

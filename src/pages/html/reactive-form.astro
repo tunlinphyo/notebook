@@ -1,17 +1,36 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'reactive-form-example-html',
+        name: 'Example HTML'
+    },
+    {
+        url: 'reactive-form-example-ts',
+        name: 'Example TypeScript'
+    },
+    {
+        url: 'reactive-form-context',
+        name: 'formContext'
+    },
+    {
+        url: 'reactive-form-code',
+        name: 'ReactiveForm'
+    }
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>ReactiveFrom</PageTitle>
     <p>
         Example: <a href="/examples/reactive-form">ReactiveFrom</a>.
     </p>
 
-    <h3>Usage</h3>
+    <SectionTitle id="reactive-form-example-html">Example HTML</SectionTitle>
     <CodeBlock code={`<reactive-form>
     <div>
         <input type="text" name="name" placeholder="Name" />
@@ -62,10 +81,8 @@ import FileName from "../../components/FileName.astro";
     </form-debug>
 </reactive-form>`} lang="html" />
 
-    <CodeBlock code={`import { ReactiveForm } from '@miniel/elements'
-import '@miniel/elements'
-
-const reactiveForm = document.querySelector<ReactiveForm>('reactive-form')
+    <SectionTitle id="reactive-form-example-ts">Example TypeScript</SectionTitle>
+    <CodeBlock code={`const reactiveForm = document.querySelector<ReactiveForm>('reactive-form')
 reactiveForm.setFormData({...})
 reactiveForm.addEventListener('submit', () => {
     if (!reactiveForm.getAttribute('dirty')) return
@@ -73,10 +90,12 @@ reactiveForm.addEventListener('submit', () => {
     const data = reactiveForm.getFormData()
     console.log("DATA", data)
 })`} lang="ts" />
-    <FileName file="reactive-form.ts" />
-    <CodeBlock code={`export const formContext = createContext<FormDataType>('form-context')
 
-export class ReactiveForm extends HTMLElement {
+    <SectionTitle id="reactive-form-context">formContext</SectionTitle>
+    <CodeBlock code={`export const formContext = createContext<FormDataType>('form-context')`} lang="ts" />
+
+    <SectionTitle id="reactive-form-code">ReactiveForm</SectionTitle>
+    <CodeBlock code={`export class ReactiveForm extends HTMLElement {
     private provider!: ContextProvider<FormDataType>
     private formData: FormDataType = {}
     private initData: FormDataType = {}

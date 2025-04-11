@@ -1,17 +1,37 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'dynamic-list-example-html',
+        name: 'Example HTML'
+    },
+    {
+        url: 'dynamic-list-example-ts',
+        name: 'Example TypeScript'
+    },
+    {
+        url: 'dynamic-list-type',
+        name: 'WithId'
+    },
+    {
+        url: 'dynamic-list-code',
+        name: 'DynamicList'
+    }
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>DynamicList</PageTitle>
 
-    <h3>Usage</h3>
+    <SectionTitle id="dynamic-list-example-html">Example HTML</SectionTitle>
     <CodeBlock code={`<dynamic-list>
     <template>
-        <dynamic-list-item data-bind-attr="title:name">
+        <dynamic-item data-bind-attr="title:name">
             <h4 data-bind-text="name"></h4>
             <div data-bind-attr="data-id:id">
                 Email: <span data-bind-text="email"></span> |
@@ -22,14 +42,12 @@ import FileName from "../../components/FileName.astro";
                 <button data-button="delete">Delete</button>
                 <button data-button="edit">Edit</button>
             </div>
-        </dynamic-list-item>
+        </dynamic-item>
     </template>
 </dynamic-list>`} lang="html" />
 
-    <CodeBlock code={`import { DynamicList } from '@miniel/elements'
-import '@miniel/elements'
-
-type Item = {
+    <SectionTitle id="dynamic-list-example-ts">Example TypeScript</SectionTitle>
+    <CodeBlock code={`type Item = {
     id: string
     name: string
     age: number
@@ -85,6 +103,11 @@ let dataList: Item[] = [
 ]
 list.list = dataList`} lang="ts" />
 
+    <SectionTitle id="dynamic-list-type">WithId</SectionTitle>
+    <FileName file="types.ts" />
+    <CodeBlock code={`export type WithId = { id: string } & Record<string, any></string>`} lang="ts" />
+
+    <SectionTitle id="dynamic-list-code">DynamicList</SectionTitle>
     <FileName file="dynamic-list.ts" />
     <CodeBlock code={`export class DynamicList<T extends WithId> extends HTMLElement {
     private _list: T[] = []

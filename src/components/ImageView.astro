@@ -18,33 +18,41 @@ const { image, title, transitionName } = Astro.props;
 
 
 <style>
-button {
-    background-color: light-dark(#fff, var(--gray-9));
-    border: none;
-    padding: var(--size-1) var(--size-3);
+@layer components {
+    button {
+        justify-self: flex-start;
+        background-color: ButtonFace;
+        color: ButtonText;
+        border: none;
+        padding: var(--size-1) var(--size-3);
 
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: var(--size-2);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--size-2);
 
-    cursor: pointer;
+        cursor: pointer;
 
-    outline: 2px solid transparent;
-    outline-offset: -2px;
-    border-radius: var(--radius-5);
-    transition: all .3s var(--ease-1);
+        outline: 2px solid transparent;
+        outline-offset: -2px;
+        border-radius: var(--radius-5);
+        transition: all .3s var(--ease-1);
 
-    &:where(:hover, :focus) {
-        outline-color: var(--green-7);
-        outline-offset: 2px;
+        margin-block-start: 4vh;
+
+        &:where(:hover, :focus) {
+            outline-color: AccentColor;
+            outline-offset: 2px;
+        }
     }
-}
-h2 {
-    font-size: var(--font-size-fluid-3);
-}
-img {
-    width: 100%;
-    background-color: light-dark(#fff, var(--gray-9));
+    h2 {
+        font-size: var(--font-size-fluid-3);
+    }
+    img {
+        grid-column: edge;
+        width: 100%;
+        background-color: ButtonFace;
+        border-radius: var(--radius-2);
+    }
 }
 </style>

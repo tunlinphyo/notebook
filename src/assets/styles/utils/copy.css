@@ -20,7 +20,7 @@
     outline-offset: -2px;
     transition: outline-offset .5s var(--ease-spring-1);
 
-    &:focus {
+    &:focus-visible {
         outline-color: var(--secondary);
         outline-offset: 2px;
     }

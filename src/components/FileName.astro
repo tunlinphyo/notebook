@@ -5,8 +5,15 @@ const { file } = Astro.props;
 <code>{file}</code>
 
 <style>
-code {
-    color: var(--stone-7);
-    font-family: inherit;
+@layer components {
+    code {
+        color: GrayText;
+        font-family: inherit;
+        font-size: .9rem;
+
+        @media (min-width: 992px) {
+            grid-column: edge;
+        }
+    }
 }
 </style>

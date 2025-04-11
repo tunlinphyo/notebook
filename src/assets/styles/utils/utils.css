@@ -1,25 +1,23 @@
-/* @import url(./easing.css);
-@import url(./keyframe.css);
-@import url(./size.css);
-@import url(./space.css); */
-@import url(./colors.css);
-
 html,
 body {
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
 
-    inline-size: var(--container-full);
-    block-size: var(--container-full);
-
-    @media (max-width: 768px) {
-        font-size: 16px;
-    }
+    inline-size: 100%;
+    block-size: 100%;
 }
 
-:is(html, dialog aside) {
+
+:root {
+    interpolate-size: allow-keywords;
+    --header-height: 100px;
+}
+
+html {
     scrollbar-width: thin;
-    scrollbar-color: light-dark(var(--green-7), var(--green-10)) light-dark(var(--gray-0), var(--gray-10));
+    scrollbar-color: AccentColor Canvas;
+    scroll-behavior: smooth;
+    scroll-padding-block-start: 10vh;
 }
 
 body:has(dialog[open]) {
@@ -27,13 +25,12 @@ body:has(dialog[open]) {
 }
 
 body {
-    color: var(--fg-color);
-    background-color: light-dark(var(--gray-0), var(--gray-10));
     overscroll-behavior: none;
+    /* background-color: light-dark(var(--gray-0), #000); */
 
     h1, h2, h3, h4, h5, h6,
     label {
-        color: var(--fg-color);
+        color: CanvasText;
     }
 
     h1 {
@@ -47,34 +44,12 @@ body {
     }
 
     a {
-        color: light-dark(var(--green-7), var(--green-4));
         text-decoration: none;
         border-radius: 5px;
     }
 
-    article {
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 1rem;
-        }
-
-        * ~ h1,
-        * ~ h2,
-        * ~ h3,
-        * ~ h4,
-        * ~ h5,
-        * ~ h6 {
-            margin-top: 2rem;
-        }
-
-        p {
-            margin-block: 1rem;
-            line-height: 1.8;
-        }
-    }
-
     [data-button] {
         border-radius: var(--rounded);
-        color: var(--fg-color);
         outline: none;
 
         > * {
@@ -91,10 +66,6 @@ body {
         overscroll-behavior: contain;
     }
 
-    [data-app-main] {
-        transition: transform var(--ease-time) var(--easeOutSine);
-    }
-
     [data-flex-center] {
         display: flex;
         justify-content: center;
@@ -102,19 +73,31 @@ body {
     }
 
     [data-form-input] {
-        background-color: var(--bg-form);
-        border-radius: var(--rounded-lg);
-        border: none;
-        outline: none;
+        appearance: none;
+        border-radius: var(--radius-2);
         outline: 2px solid transparent;
         outline-offset: -2px;
-        transition: var(--ease-time-sm) var(--easeOutBack);
-        /* border: 2px solid var(--bg-accent); */
-        caret-color: var(--secondary);
-        color: var(--fg-color);
+        transition: .3s var(--ease-1);
+        background-color: Field;
+        border: 1px solid FieldText;
+        caret-color: AccentColor;
+        color: FieldText;
+        /* border: 1px solid ButtonBorder; */
+
+        &:focus-visible {
+            outline-color: AccentColor;
+            outline-offset: 2px;
+        }
+    }
+
+    [data-form-check] {
+        outline: 2px solid transparent;
+        outline-offset: -2px;
+        transition: .3s var(--ease-1);
+        border-radius: var(--radius-2);
 
         &:focus {
-            outline-color: var(--secondary);
+            outline-color: AccentColor;
             outline-offset: 2px;
         }
     }

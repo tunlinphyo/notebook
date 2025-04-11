@@ -1,0 +1,14 @@
+---
+const { id } = Astro.props
+---
+
+<h3 id={id}><slot></slot></h3>
+
+<style>
+@layer components {
+    h3 {
+        font-size: var(--font-size-4);
+        font-weight: 400;
+    }
+}
+</style>
