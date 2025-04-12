@@ -102,10 +102,13 @@ import NavItem from "./NavItem.astro"
         </svg>
         Blog (Beta)
     </h2>
+    <ul>
+        <li></li>
+    </ul>
 </nav>
 
 <style>
-@layer layout {
+@layer layouts {
     nav {
         padding: var(--size-3);
 
@@ -122,7 +125,7 @@ import NavItem from "./NavItem.astro"
         justify-content: flex-start;
         align-items: center;
         gap: var(--size-1);
-        color: AccentColor;
+        color: var(--accent-color);
     }
 
     ul {

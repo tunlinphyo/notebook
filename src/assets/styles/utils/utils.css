@@ -7,7 +7,6 @@ body {
     block-size: 100%;
 }
 
-
 :root {
     interpolate-size: allow-keywords;
     --header-height: 100px;
@@ -15,7 +14,7 @@ body {
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: AccentColor Canvas;
+    scrollbar-color: var(--accent-color) Canvas;
     scroll-behavior: smooth;
     scroll-padding-block-start: 10vh;
 }
@@ -80,12 +79,12 @@ body {
         transition: .3s var(--ease-1);
         background-color: Field;
         border: 1px solid FieldText;
-        caret-color: AccentColor;
+        caret-color: var(--accent-color);
         color: FieldText;
         /* border: 1px solid ButtonBorder; */
 
         &:focus-visible {
-            outline-color: AccentColor;
+            outline-color: var(--accent-color);
             outline-offset: 2px;
         }
     }
@@ -97,7 +96,7 @@ body {
         border-radius: var(--radius-2);
 
         &:focus {
-            outline-color: AccentColor;
+            outline-color: var(--accent-color);
             outline-offset: 2px;
         }
     }

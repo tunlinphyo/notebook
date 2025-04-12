@@ -116,7 +116,7 @@ const contentsTyped: ContentItem[] = contents
 </script>
 
 <style>
-@layer layout {
+@layer layouts {
     section {
         /* --theme-bg: light-dark(#fff, var(--gray-10)); */
         height: 100%;
@@ -161,11 +161,11 @@ const contentsTyped: ContentItem[] = contents
         }
 
         a {
-            color: AccentColor;
+            color: var(--accent-color);
             /* color: LinkText;
             text-decoration: underline;
             text-decoration-style: wavy;
-            text-decoration-color: AccentColor; */
+            text-decoration-color: var(--accent-color); */
 
             &:hover {
                 text-decoration: underline;
@@ -198,14 +198,13 @@ const contentsTyped: ContentItem[] = contents
         & h3 {
             font-size: 1.2rem;
             font-weight: normal;
-            text-transform: uppercase;
             padding-block: var(--size-2);
 
             display: flex;
             justify-content: flex-start;
             align-items: center;
             gap: var(--size-1);
-            color: AccentColor;
+            color: var(--accent-color);
 
             @media (max-width: 1119px) {
                 height: 50px;
@@ -285,18 +284,20 @@ const contentsTyped: ContentItem[] = contents
         & a {
             color: CanvasText;
             font-size: .9rem;
-            display: flex;
+            display: inline-flex;
             justify-content: flex-start;
             align-items: center;
             height: 28px;
             border-inline-start: 2px solid ButtonFace;
             border-radius: 0;
-            padding-inline-start: var(--size-3);
+            padding-inline: var(--size-3);
+            border-radius: 0 var(--radius-2) var(--radius-2) 0;
             opacity: .8;
 
             &[data-active=on] {
-                color: AccentColor;
-                border-color: AccentColor;
+                color: CanvasText;
+                border-color: var(--accent-color);
+                background-color: Highlight;
                 opacity: 1;
             }
         }
@@ -307,11 +308,18 @@ const contentsTyped: ContentItem[] = contents
         border-top: 1px solid ButtonFace;
         width: 100%;
         height: 100px;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding-inline: 4vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--size-2);
+        
+        @media (min-width: 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         .copyright {
             color: GrayText;
@@ -331,13 +339,13 @@ const contentsTyped: ContentItem[] = contents
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 2vw;
+            gap: max(16px, 2vw);
 
             & a {
                 color: GrayText;
 
                 &:where(:focus-visible, :hover) {
-                    color: AccentColor;
+                    color: var(--accent-color);
                 }
             }
         }

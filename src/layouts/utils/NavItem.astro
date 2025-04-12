@@ -7,7 +7,7 @@ const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : curren
 <a data-nav class={currentUrl === url ? "active" : ""} href={url}>{label}</a>
 
 <style>
-@layer layout {
+@layer layouts {
     a {
         display: flex;
         justify-content: flex-start;
@@ -27,7 +27,7 @@ const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : curren
             content: '';
             display: block;
             width: 2px;
-            height: var(--size-2);
+            height: 12px;
             background-color: GrayText;
             border-radius: var(--radius-drawn-4);
 
@@ -58,7 +58,7 @@ const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : curren
         &.active {
             &::before {
                 width: var(--size-3);
-                background-color: AccentColor;
+                background-color: var(--accent-color);
             }
 
             &::after {

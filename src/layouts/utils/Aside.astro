@@ -87,7 +87,7 @@ import Nav from "./Nav.astro"
         border-radius: var(--radius-blob-4);
         background-color: Canvas;
         color: CanvasText;
-        border: 2px solid AccentColor;
+        border: 2px solid var(--accent-color);
 
         position: fixed;
         z-index: calc(infinity);
@@ -214,7 +214,7 @@ import Nav from "./Nav.astro"
             transition: outline-offset .5s var(--ease-spring-1);
 
             &:focus-visible {
-                outline-color: AccentColor;
+                outline-color: var(--accent-color);
                 outline-offset: 6px;
             }
             & svg {
@@ -233,7 +233,7 @@ import Nav from "./Nav.astro"
                 line-height: 1;
 
                 &:last-child {
-                    color: AccentColor;
+                    color: var(--accent-color);
                     font-weight: 200;
                     font-size: 2rem;
                 }
