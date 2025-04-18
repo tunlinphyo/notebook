@@ -17,8 +17,8 @@ import PageTitle from "../../components/PageTitle.astro";
         </div>
         <div data-toggle-target="outie">
             <p>
-                If <span>data-style</span> is not set, all <span>data-toggle-target</span> elements will have their
-                <span>data-attr</span> set to <span>on</span> or <span>off</span>.
+                If <span class="heilight">data-style</span> is not set, all <span class="heilight">data-toggle-target</span> elements will have their
+                <span class="heilight">data-attr</span> set to <span class="heilight">on</span> or <span>off</span>.
             </p>
             <div class="actions">
                 <button data-button="context" data-context="outie.page:one|two|three">LOOP PAGE</button>
@@ -51,8 +51,8 @@ import PageTitle from "../../components/PageTitle.astro";
             </div>
             <div data-toggle-target="innie">
                 <p>
-                    If <span>data-style</span> is not set, all <span>data-toggle-target</span> elements will have their
-                    <span>data-attr</span> set to <span>on</span> or <span>off</span>.
+                    If <span class="heilight">data-style</span> is not set, all <span class="heilight">data-toggle-target</span> elements will have their
+                    <span class="heilight">data-attr</span> set to <span class="heilight">on</span> or <span>off</span>.
                 </p>
                 <div class="actions">
                     <button data-button="context" data-context="innie.page:one|two|three|four|five">LOOP PAGE</button>
@@ -155,20 +155,6 @@ button {
     & p {
         margin: 0;
         margin-bottom: 1rem;
-    }
-
-    & span {
-        display: inline-block;
-        padding-inline: .25rem;
-        border-radius: .25rem;
-        background-color: Highlight;
-        /* color: HighlightText; */
-        border-bottom: 2px solid var(--accent-color);
-
-        @supports not (background-color: Highlight) {
-            background-color: #3399ff;
-            color: white;
-        }
     }
 
     &[data-attr="off"] {

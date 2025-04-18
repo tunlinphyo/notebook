@@ -1,6 +1,7 @@
 :root {
     color-scheme: light dark;
     --accent-color: AccentColor;
+    accent-color: var(--accent-color);
 
     @media (prefers-reduced-transparency: reduce) {
         --glass-alpha: 1;

@@ -2,24 +2,41 @@
 import Layout from "../../layouts/Layout.astro"
 import PageTitle from "../../components/PageTitle.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'aria-only-example-html',
+        name: 'Example HTML'
+    },
+    {
+        url: 'aria-only-styles',
+        name: 'Styles'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>Aria</PageTitle>
     <p class="transition">
         Make element Aria only.
     </p>
-    <CodeBlock code={`[data-aria-only] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}`} lang="css" />
 
+    <SectionTitle id="aria-only-example-html">Example HTML</SectionTitle>
     <CodeBlock code={`<input data-aria-only type="radio" />`} lang="html" />
+
+    <SectionTitle id="aria-only-styles">Styles</SectionTitle>
+    <CodeBlock code={`@layout utils {
+    [data-aria-only] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+}`} lang="css" />
 </Layout>

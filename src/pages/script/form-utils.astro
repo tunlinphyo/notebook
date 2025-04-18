@@ -1,19 +1,49 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'form-utils-form-data-type',
+        name: 'FormDataType'
+    },
+    {
+        url: 'form-utils-collect-form-data',
+        name: 'collectInitialFormData'
+    },
+    {
+        url: 'form-utils-set-form-value',
+        name: 'setFormValues'
+    },
+    {
+        url: 'form-utils-reset-form-value',
+        name: 'resetFormValues'
+    },
+    {
+        url: 'form-utils-parse-form-value',
+        name: 'parseFormValue'
+    },
+    {
+        url: 'form-utils-serialize-form-value',
+        name: 'serializeFormValue'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>Form Utils</PageTitle>
 
+    <SectionTitle id="form-utils-form-data-type">FormDataType</SectionTitle>
     <FileName file="form-utils.ts" />
     <CodeBlock code={`export type TypedValue = string | number | boolean | null | string[]
 
-export type FormDataType = Record<string, TypedValue>
+export type FormDataType = Record<string, TypedValue>`} lang="ts" />
 
-export function collectInitialFormData(form: HTMLElement): FormDataType {
+    <SectionTitle id="form-utils-collect-form-data">collectInitialFormData</SectionTitle>
+    <CodeBlock code={`export function collectInitialFormData(form: HTMLElement): FormDataType {
     const data: FormDataType = {}
 
     const elements = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
@@ -53,9 +83,10 @@ export function collectInitialFormData(form: HTMLElement): FormDataType {
     })
 
     return data
-}
+}`} lang="ts" />
 
-export function setFormValues(form: HTMLElement, initData: FormDataType) {
+    <SectionTitle id="form-utils-set-form-value">setFormValues</SectionTitle>
+    <CodeBlock code={`export function setFormValues(form: HTMLElement, initData: FormDataType) {
     const elements = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]')
     elements.forEach((el) => {
         const val = initData[el.name]
@@ -63,16 +94,18 @@ export function setFormValues(form: HTMLElement, initData: FormDataType) {
             serializeFormValue(el, val)
         }
     })
-}
+}`} lang="ts" />
 
-export function resetFormValues(form: HTMLElement) {
+    <SectionTitle id="form-utils-reset-form-value">resetFormValues</SectionTitle>
+    <CodeBlock code={`export function resetFormValues(form: HTMLElement) {
     const elements = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]')
     elements.forEach((el) => {
         serializeFormValue(el, "")
     })
-}
+}`} lang="ts" />
 
-export function parseFormValue(
+    <SectionTitle id="form-utils-parse-form-value">parseFormValue</SectionTitle>
+    <CodeBlock code={`export function parseFormValue(
     el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement,
     root?: HTMLElement
 ): TypedValue {
@@ -110,9 +143,10 @@ export function parseFormValue(
     }
 
     return el.value
-}
+}`} lang="ts" />
 
-export function serializeFormValue(el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, value: TypedValue): void {
+    <SectionTitle id="form-utils-serialize-form-value">serializeFormValue</SectionTitle>
+    <CodeBlock code={`export function serializeFormValue(el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, value: TypedValue): void {
     if (el instanceof HTMLSelectElement && el.multiple && Array.isArray(value)) {
         if (value.every(v => typeof v === 'string')) {
             const options = Array.from(el.options)

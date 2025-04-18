@@ -1,17 +1,36 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'css-style-sheet-shadow-dom',
+        name: 'Shadow DOM'
+    },
+    {
+        url: 'css-style-sheet-with-custom-element',
+        name: 'With Custom Element'
+    },
+    {
+        url: 'css-style-sheet-custom-element',
+        name: 'Custom Element'
+    },
+    {
+        url: 'css-style-sheet-example',
+        name: 'Example'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>CSSStyleSheet</PageTitle>
 
     <CodeBlock code={`let stylesheet = new CSSStyleSheet({ media: "print" });
 console.log(stylesheet.media);`} lang="js" />
 
-    <h3>Sharing stylesheets with a shadow DOM</h3>
+    <SectionTitle id="css-style-sheet-shadow-dom">Sharing stylesheets with a shadow DOM</SectionTitle>
     <CodeBlock code={`// Create an element in the document and then create a shadow root:
 const node = document.createElement("div");
 const shadow = node.attachShadow({ mode: "open" });
@@ -19,7 +38,7 @@ const shadow = node.attachShadow({ mode: "open" });
 //Adopt the sheet into the shadow DOM
 shadow.adoptedStyleSheets = [sheet];`} lang="js" />
 
-    <h3>With Custom Element</h3>
+    <SectionTitle id="css-style-sheet-with-custom-element">With Custom Element</SectionTitle>
     <CodeBlock code={`export function css(strings: TemplateStringsArray, ...values: any[]): CSSStyleSheet {
     const cssString = strings.reduce((acc, str, i) => {
         const val = values[i];
@@ -33,7 +52,8 @@ shadow.adoptedStyleSheets = [sheet];`} lang="js" />
     return sheet;
 }`} lang="ts" />
 
-    <p>Custom Element</p>
+
+    <SectionTitle id="css-style-sheet-custom-element">Custom Element</SectionTitle>
     <CodeBlock code={`export abstract class MiniEl extends HTMLElement {
     static states?: State<any>;
 
@@ -48,7 +68,7 @@ shadow.adoptedStyleSheets = [sheet];`} lang="js" />
     }
 }`} lang="ts" />
 
-    <h3>Usage</h3>
+    <SectionTitle id="css-style-sheet-example">Example</SectionTitle>
     <CodeBlock code={`import { css, MiniEl } from './mini-element'
 
 const hostStyle = css\`

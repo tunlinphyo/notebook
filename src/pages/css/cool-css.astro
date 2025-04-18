@@ -2,12 +2,33 @@
 import Layout from "../../layouts/Layout.astro"
 import PageTitle from "../../components/PageTitle.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'css-dotted-blur',
+        name: 'Dotted Blur'
+    },
+    {
+        url: 'css-text-multi-line-overflow',
+        name: 'Text Multi Lines Overflow'
+    },
+    {
+        url: 'css-grid-auto-layout',
+        name: 'Grid Auto Layout'
+    },
+    {
+        url: 'css-sticky-hack',
+        name: 'Sticky Hack'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>Cool CSS</PageTitle>
 
-    <h3>Dotted Blur</h3>
+    <SectionTitle id="css-dotted-blur">Dotted Blur</SectionTitle>
     <CodeBlock code={`{
     background-color: rgb(0,0,0);
     background-image: radial-gradient( rgba(0,0,0,0) 1px,
@@ -16,7 +37,7 @@ import CodeBlock from "../../components/CodeBlock.astro"
     backdrop-filter: brightness(100%) blur(3px);
 }`} lang="css" />
 
-    <h3>Text Multi Lines Overflow</h3>
+    <SectionTitle id="css-text-multi-line-overflow">Text Multi Lines Overflow</SectionTitle>
     <CodeBlock code={`{
     display: -webkit-box;
     -webkit-line-clamp: 3; /* how many lines */
@@ -24,7 +45,7 @@ import CodeBlock from "../../components/CodeBlock.astro"
     overflow: hidden;
 }`} lang="css" />
 
-    <h3>Grid Auto Layout</h3>
+    <SectionTitle id="css-grid-auto-layout">Grid Auto Layout</SectionTitle>
     <CodeBlock code={`.wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -37,7 +58,11 @@ import CodeBlock from "../../components/CodeBlock.astro"
     grid-gap: 1rem;
 }`} lang="css" />
 
-    <h3>Add Class on Sticky Hack</h3>
+    <SectionTitle id="css-sticky-hack">Sticky Hack</SectionTitle>
+    <p>
+        Check out the <a href="/script/sticky-hack">StickyHack</a>
+        class for more advanced usage.
+    </p>
     <CodeBlock code={`.myElement {
   position: sticky;
   top: -1px;
@@ -54,29 +79,4 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(el);`} lang="js" />
-
-    <h3>Another Way</h3>
-    <CodeBlock code={`.sticky-element {
-      position: sticky;
-      top: 60px; /* Adjust as needed */
-      padding: 10px;
-}
-.pined {
-      background-color: lightblue;
-}`} lang="css" />
-    <CodeBlock code={`const stickyElement = document.getElementById('stickyElement');
-let isSticky = false;
-
-const checkStickyPosition = () => {
-    const rect = stickyElement.getBoundingClientRect();
-    isSticky = rect.top === 60; // Adjust to the initial top value
-};
-
-const handleScroll = () => {
-    checkStickyPosition();
-    stickyElement.classList.toggle('pined', isSticky);
-};
-
-window.addEventListener('scroll', handleScroll);
-checkStickyPosition();`} lang="js" />
 </Layout>

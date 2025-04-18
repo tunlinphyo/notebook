@@ -2,9 +2,30 @@
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
 import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'modal-dialog-example-html',
+        name: 'Example HTML'
+    },
+    {
+        url: 'modal-dialog-example-ts',
+        name: 'Example TypeScript'
+    },
+    {
+        url: 'modal-dialog-code',
+        name: 'PageDialog'
+    },
+    {
+        url: 'modal-dialog-styles',
+        name: 'Styles'
+    }
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>ModalDialog</PageTitle>
 
     <p>
@@ -12,6 +33,74 @@ import PageTitle from "../../components/PageTitle.astro"
         <a href="/html/miniel">MiniEl</a>
         class and creates a dialog element with a swipe-to-close function for mobile web apps.
     </p>
+
+    <SectionTitle id="modal-dialog-example-html">Example HTML</SectionTitle>
+    <CodeBlock code={`<modal-dialog id="categoryModal">
+    <header slot="header">
+        <button class="button-close" data-button="close">
+            <svg-icon name="close" size="16"></svg-icon>
+        </button>
+        <h2>Category</h2>
+        <button class="button-action" data-button="action">
+            <svg-icon name="done" size="16"></svg-icon>
+        </button>
+    </header>
+    <reactive-form id="caegoryForm">
+        <input type="hidden" name="id" value="" />
+
+        <div class="card">
+            <category-data scoped>
+                <div class="icon" data-bind-attr="data-bg-color:color" data-bg-color="gray">
+                    <category-icon data-bind-attr="name:icon" name="clothe-hanger" size="48"></category-icon>
+                </div>
+                <input autofocus data-bind-attr="data-color:color" data-form-input type="text" name="name" placeholder="Category Name" />
+            </category-data>
+        </div>
+        <div class="card">
+            <dynamic-list data-input="colors" id="colorInputs">
+                <template>
+                    <dynamic-item>
+                        <label data-color data-bind-attr="data-bg-color:id">
+                            <input data-aria-only type="radio" name="color" data-bind="id">
+                        </label>
+                    </dynamic-item>
+                </template>
+            </dynamic-list>
+        </div>
+        <div class="card m-0">
+            <dynamic-list data-input="icons" id="iconsInputs">
+                <template>
+                    <dynamic-item>
+                        <label data-icon>
+                            <category-icon data-bind-attr="name:id" size="20"></category-icon>
+                            <input data-aria-only type="radio" name="icon" data-bind="id">
+                        </label>
+                    </dynamic-item>
+                </template>
+            </dynamic-list>
+        </div>
+    </reactive-form>
+</modal-dialog>`} lang="html" />
+
+    <SectionTitle id="modal-dialog-example-ts">Example TypeScript</SectionTitle>
+    <CodeBlock code={`const categoryModal = document.querySelector<ModalDialog>('#categoryModal')
+
+categoryModal.openModal()
+categoryModal.closeModal()
+
+categoryModal.addEventListener('button-click', (e: Event) => {
+    const customEvent = e as CustomEvent
+    console.log(customEvent.detail)
+})
+categoryModal.addEventListener('opened', () => {
+    console.log("opened")
+})
+categoryModal.addEventListener('closed', () => {
+    console.log("closed")
+})`} lang="ts" />
+
+    <SectionTitle id="modal-dialog-code">ModalDialog</SectionTitle>
+    <FileName file="modal-dialog.ts" />
     <CodeBlock code={`export class ModalDialog extends MiniEl {
     private dialog!: HTMLDialogElement
     private startY: number = 0
@@ -143,6 +232,9 @@ import PageTitle from "../../components/PageTitle.astro"
 }
 
 customElements.define('modal-dialog', ModalDialog)`} lang="ts" />
+
+    <SectionTitle id="modal-dialog-styles">Styles</SectionTitle>
+    <FileName file="styles.ts" />
     <CodeBlock code={`const hostStyles = css\`
     * {
         box-sizing: border-box;

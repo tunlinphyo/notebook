@@ -1,10 +1,18 @@
 ---
 const { label, url } = Astro.props;
 const currentPath = Astro.url.pathname
-const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath
+// const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath
+const isCurrent = currentPath === url;
 ---
 
-<a data-nav class={currentUrl === url ? "active" : ""} href={url}>{label}</a>
+<a
+  data-nav
+  class={isCurrent ? "active" : ""}
+  href={url}
+  aria-current={isCurrent ? "page" : undefined}
+>
+  {label}
+</a>
 
 <style>
 @layer layouts {
@@ -14,7 +22,7 @@ const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : curren
         align-items: center;
         gap: var(--size-2);
 
-        height: var(--size-px-7);
+        height: 36px;
         text-decoration: none;
         color: CanvasText;
         text-transform: capitalize;
@@ -67,9 +75,9 @@ const currentUrl = currentPath.endsWith('/') ? currentPath.slice(0, -1) : curren
         }
 
 
-        &.active:focus {
+        /* &.active:focus {
             background-color: var(--green-1);
-        }
+        } */
     }
 }
 </style>

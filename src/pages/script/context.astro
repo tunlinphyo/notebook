@@ -1,17 +1,37 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'context-type',
+        name: 'Type'
+    },
+    {
+        url: 'context-create',
+        name: 'createContext'
+    },
+    {
+        url: 'context-provider',
+        name: 'ContextProvider'
+    },
+    {
+        url: 'context-consumer',
+        name: 'ContextConsumer'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>Context</PageTitle>
     <p>
         Reference: <a href="https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md" target="_blank">Context Protocol</a>
     </p>
 
-    <h3>Type</h3>
+    <SectionTitle id="context-type">Type</SectionTitle>
     <CodeBlock code={`declare module '@context' {
     export type Context<T> = symbol & { __contextType?: T };
     export type ContextCallback<T> = (value: T, oldValue: T) => void;
@@ -37,6 +57,7 @@ import FileName from "../../components/FileName.astro";
     }
 }`} lang="ts" />
 
+    <SectionTitle id="context-create">createContext</SectionTitle>
     <FileName file="context.ts" />
     <CodeBlock code={`export type Context<T> = symbol & { __contextType?: T };
 export type ContextCallback<T> = (value: T, oldValue: T) => void;
@@ -51,7 +72,8 @@ export function createContext<T>(name: string) {
     return Symbol(name) as Context<T>;
 }`} lang="ts" />
 
-    <p>ContextProvider</p>
+    <SectionTitle id="context-provider">ContextProvider</SectionTitle>
+    <FileName file="provider.ts" />
     <CodeBlock code={`export class ContextProvider<T> {
     private _value: T;
     private listeners = new Set<HTMLElement>();
@@ -140,7 +162,8 @@ export function createContext<T>(name: string) {
     }
 }`} lang="ts" />
 
-    <p>ContextConsumer</p>
+    <SectionTitle id="context-consumer">ContextConsumer</SectionTitle>
+    <FileName file="consumer.ts" />
     <CodeBlock code={`export class ContextConsumer<T> {
     private subscriptions = new Set<() => void>();
 

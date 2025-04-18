@@ -4,7 +4,10 @@ import { Code } from 'astro:components';
 ---
 
 <div class="code-block">
-    <button class="copy-btn" data-button="code-copy">Copy</button>
+    <button class="copy-btn"
+        data-button="code-copy"
+        type="button"
+        aria-label="Copy code to clipboard">Copy</button>
     <Code code={code} lang={lang} theme="github-dark" />
 </div>
 
@@ -29,11 +32,15 @@ import { Code } from 'astro:components';
 <style>
 @layer components {
     .code-block {
-        grid-column: edge;
+        /* grid-column: edge; */
         position: relative;
         margin-bottom: 1.5rem;
 
         display: grid;
+
+        @media (max-width: 640px) {
+            grid-column: edge;
+        }
     }
 
     .copy-btn {
@@ -55,7 +62,7 @@ import { Code } from 'astro:components';
         overflow-x: auto;
         padding: 1rem;
         padding: var(--size-3);
-        border-radius: var(--radius-2);
+        border-radius: 2px;
         margin-bottom: 1rem;
         font-size: .9rem;
 

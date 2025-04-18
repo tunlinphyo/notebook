@@ -1,0 +1,109 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import CodeBlock from "../../components/CodeBlock.astro"
+import PageTitle from "../../components/PageTitle.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'element-get-bounding-client-rect',
+        name: 'getBoundingClientRect'
+    },
+    {
+        url: 'element-get-client-rects',
+        name: 'getClientRects'
+    },
+    {
+        url: 'element-get-animation',
+        name: 'getAnimations'
+    },
+    {
+        url: 'element-get-html',
+        name: 'getHTML'
+    },
+    {
+        url: 'element-scroll-height',
+        name: 'scrollHeight'
+    },
+    {
+        url: 'element-pointer-capture',
+        name: 'Pointer Capture'
+    },
+]
+---
+
+<Layout contents={contents}>
+    <PageTitle>Script</PageTitle>
+
+    <SectionTitle id="element-get-bounding-client-rect">Element.getBoundingClientRect()</SectionTitle>
+    <p>
+        Returns a single DOMRect that represents the entire bounding box of the element.
+    </p>
+    <CodeBlock code={`const rect = element.getBoundingClientRect();
+console.log(rect);`} lang="js" />
+    <img src="/scripts/element-box-diagram.png" alt="getBoundingClientRect">
+
+    <SectionTitle id="element-get-client-rects">Element.getClientRects()</SectionTitle>
+    <p id="ppp">
+        Returns a <strong>collection of DOMRects</strong> (a DOMRectList) — <strong>one for each visual box</strong> (line box or fragment) that the element occupies.
+    </p>
+    <CodeBlock code={`const rects = element.getClientRects();
+for (const rect of rects) {
+    console.log(rect);
+}`} lang="js" />
+
+    <SectionTitle id="element-get-animation">Element.getAnimations()</SectionTitle>
+    <p>
+        The following code snippet will wait for all animations on Element and its descendants to finish before removing the element from the document.
+    </p>
+    <CodeBlock code={`Promise.all(
+    elem.getAnimations({ subtree: true }).map((animation) => animation.finished),
+).then(() => elem.remove());`} lang="js" />
+
+    <SectionTitle id="element-get-html">Element.getHTML()</SectionTitle>
+    <p id="ppp">
+        The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getHTML" target="_blank">getHTML()</a>
+        method of the Element interface is used to serialize an element's DOM to an HTML string.
+    </p>
+    <CodeBlock code={`const options = {
+    serializableShadowRoots: false,
+    // A boolean value that specifies whether to include
+    // serializable shadow roots. The default value is false.
+    shadowRoots: []
+    // An array of ShadowRoot objects to serialize.
+    // These are included regardless of whether they are marked as serializable,
+    // or if they are open or closed. The default value is an empty array.
+}
+getHTML(options)`} lang="js" />
+
+    <SectionTitle id="element-scroll-height">Element.scrollHeight</SectionTitle>
+    <p>
+        Determine if an element has been totally scrolled
+    </p>
+    <CodeBlock code={`Math.abs(element.scrollHeight - element.clientHeight - element.scrollTop) <= 1;`} lang="js" />
+
+    <SectionTitle id="element-pointer-capture">Pointer Capture</SectionTitle>
+    <p id="ppp">
+        <span class="heilight">pointerdown</span> works for all of
+        <span class="heilight">mousedown</span> (mouse),
+        <span class="heilight">touchstart</span> (touch), and
+        <span class="heilight">pen down</span> (stylus) with one unified event.
+    </p>
+    <CodeBlock code={`const box = document.getElementById('box');
+
+box.addEventListener('pointerdown', (e) => {
+    // Start receiving all pointer events, even outside the box
+    box.setPointerCapture(e.pointerId);
+});
+
+box.addEventListener('pointermove', (e) => {
+    if (box.hasPointerCapture(e.pointerId)) {
+        console.log('Pointer is being tracked:', e.clientX, e.clientY);
+    }
+});
+
+box.addEventListener('pointerup', (e) => {
+    box.releasePointerCapture(e.pointerId);
+});`} lang="js" />
+
+</Layout>

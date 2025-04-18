@@ -1,17 +1,33 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'signal-type',
+        name: 'Type'
+    },
+    {
+        url: 'signal-export',
+        name: 'Export'
+    },
+    {
+        url: 'signal-code',
+        name: 'Signal'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>Signal</PageTitle>
     <p>
         Reference: JavaScript <a href="https://github.com/tc39/proposal-signals" target="_blank">Signals</a> standard proposal
     </p>
 
-    <h3>Type</h3>
+    <SectionTitle id="signal-type">Type</SectionTitle>
     <CodeBlock code={`declare module '@signal' {
     export type Effect = () => void;
     export type State<T> = import('./signal').Signal.State<T>;
@@ -25,6 +41,7 @@ import FileName from "../../components/FileName.astro";
     export function effect(callback: () => void, signals: Signal<any>[]): () => void;
 }`} lang="ts" />
 
+    <SectionTitle id="signal-export">Export</SectionTitle>
     <FileName file="index.ts" />
     <CodeBlock code={`import { Signal } from "./signal"
 
@@ -40,6 +57,7 @@ export function effect(callback: () => void, signals: Signal<any>[]) {
     return Signal.subtle.effect(callback, signals)
 }`} lang="ts" />
 
+    <SectionTitle id="signal-code">Signal</SectionTitle>
     <FileName file="signal.ts" />
     <CodeBlock code={`export interface Signal<T> {
     get(): T;

@@ -1,11 +1,27 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
-import PageTitle from "../../components/PageTitle.astro";
-import FileName from "../../components/FileName.astro";
+import PageTitle from "../../components/PageTitle.astro"
+import FileName from "../../components/FileName.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'reactive-directive-example-html',
+        name: 'Example HTML'
+    },
+    {
+        url: 'reactive-directive-example-script',
+        name: 'Example ReactiveTest'
+    },
+    {
+        url: 'reactive-directive-code',
+        name: 'ReactiveDirective'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>ReactiveDirective</PageTitle>
     <p>
         ReactiveDirective used <a href="/script/context">Context</a>
@@ -14,7 +30,7 @@ import FileName from "../../components/FileName.astro";
         Example: <a href="/examples/reactive-directive">ReactiveDirective</a>.
     </p>
 
-    <h3>Usage</h3>
+    <SectionTitle id="reactive-directive-example-html">Example HTML</SectionTitle>
     <CodeBlock code={`<reactive-test scoped>
     <button data-button="toggle" data-toggle="on" data-target="outie">TOGGLE OUTIE</button>
     <div data-toggle-target="outie" data-style="background:hotpink|cornflowerblue">
@@ -84,10 +100,12 @@ import FileName from "../../components/FileName.astro";
         </div>
     </reactive-test>
 </reactive-test>`} lang="html" />
-    <CodeBlock code={`import { html, MiniEl } from "@miniel"
-import { ReactiveDirective } from "@miniel/directives"
 
-export class ReactiveTest extends MiniEl {
+    <SectionTitle id="reactive-directive-example-script">Example ReactiveTest</SectionTitle>
+    <p>
+        Reference: <a href="/html/miniel">MiniEl</a>
+    </p>
+    <CodeBlock code={`export class ReactiveTest extends MiniEl {
     private reactive?: ReactiveDirective
 
     constructor() {
@@ -110,6 +128,7 @@ export class ReactiveTest extends MiniEl {
 
 customElements.define('reactive-test', ReactiveTest)`} lang="ts" />
 
+    <SectionTitle id="reactive-directive-code">ReactiveDirective</SectionTitle>
     <FileName file="reactive.ts" />
     <CodeBlock code={`type DataType = Record<string, unknown>
 

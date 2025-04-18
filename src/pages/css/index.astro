@@ -2,16 +2,40 @@
 import Layout from "../../layouts/Layout.astro"
 import PageTitle from "../../components/PageTitle.astro"
 import CodeBlock from "../../components/CodeBlock.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'css-layer',
+        name: 'Layer'
+    },
+    {
+        url: 'css-property',
+        name: 'Property'
+    },
+    {
+        url: 'css-starting-style',
+        name: 'Starting Style'
+    },
+    {
+        url: 'css-counter-style',
+        name: 'Counter Style'
+    },
+    {
+        url: 'css-color-mix',
+        name: 'Color Mix'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>CSS</PageTitle>
 
     <p>
         Check CSS support <a href="https://caniuse.com/" target="_blank">Can I use _?</a>
     </p>
 
-    <h3>Layer</h3>
+    <SectionTitle id="css-layer">Layer</SectionTitle>
     <p>
         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer" target="_blank">@layer</a>
     </p>
@@ -32,7 +56,7 @@ import CodeBlock from "../../components/CodeBlock.astro"
     background: light-dark(#EEE, #000);
 }`} lang="css" />
 
-    <h3>Property</h3>
+    <SectionTitle id="css-property">Property</SectionTitle>
     <p>
         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@property" target="_blank">@property</a>
     </p>
@@ -66,7 +90,7 @@ syntax: "<length> | auto";
 /* Universal syntax value */
 syntax: "*";`} lang="css" />
 
-    <h3>Starting Style</h3>
+    <SectionTitle id="css-starting-style">Starting Style</SectionTitle>
     <p>
         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style" target="_blank">@starting-style</a>
     </p>
@@ -96,7 +120,7 @@ syntax: "*";`} lang="css" />
     }
 }`} lang="css" />
 
-    <h3>Counter Style</h3>
+    <SectionTitle id="css-counter-style">Counter Style</SectionTitle>
     <p>
         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style" target="_blank">@counter-style</a>
     </p>
@@ -117,4 +141,21 @@ ul[data-reading-list] {
 ul[data-tool-list] {
     list-style-type: tool-list;
 }`} lang="css" />
+
+    <SectionTitle id="css-color-mix">Color Mix</SectionTitle>
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix" target="_blank">color-mix()</a>
+    </p>
+    <CodeBlock code={`/* color-mix(in <polar-color-space>, <color>, <color> <percentage>) */
+color-mix(in hsl, hsl(200 50 80), coral 80%)
+/* color-mix(in <polar-color-space> <hue-interpolation-method>, <color>, <color>) */
+color-mix(in lch longer hue, hsl(200deg 50% 80%), coral)
+
+/* color-mix(in <rectangular-color-space>, <color>, <color>) */
+color-mix(in srgb, plum, #f00)
+/* color-mix(in <rectangular-color-space>, <color> <percentage>, <color> <percentage> */
+color-mix(in lab, plum 60%, #f00 50%)
+
+/* color-mix(in <custom-color-space>, <color>, <color>) */
+color-mix(in --swop5c, red, blue)`} lang="css" />
 </Layout>

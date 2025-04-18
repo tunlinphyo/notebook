@@ -2,19 +2,38 @@
 import Layout from "../../layouts/Layout.astro";
 import CodeBlock from "../../components/CodeBlock.astro"
 import PageTitle from "../../components/PageTitle.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+const contents = [
+    {
+        url: 'view-transition-syntax',
+        name: 'Syntax'
+    },
+    {
+        url: 'view-transition-group',
+        name: 'Transition Group'
+    },
+    {
+        url: 'view-transition-keyframes',
+        name: 'Keyframes'
+    },
+]
 ---
 
-<Layout>
+<Layout contents={contents}>
     <PageTitle>View Transition API</PageTitle>
     <p>
         Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition" target="_blank">@view-transition</a>,
         <a href="https://open-props.style/" target="_blank">Open Props</a>
     </p>
+
+    <SectionTitle id="view-transition-syntax">Syntax</SectionTitle>
     <CodeBlock code={`@view-transition {
     navigation: auto;
-}
+}`} lang="css" />
 
-::view-transition-group(root) {
+    <SectionTitle id="view-transition-group">Transition Group</SectionTitle>
+    <CodeBlock code={`::view-transition-group(root) {
     animation-duration: .5s;
 }
 
@@ -43,9 +62,10 @@ import PageTitle from "../../components/PageTitle.astro"
         animation-name: SlideOut;
         animation-timing-function: var(--ease-spring-1);
     }
-}
+}`} lang="css" />
 
-@keyframes PageIn {
+    <SectionTitle id="view-transition-keyframes">Keyframes</SectionTitle>
+    <CodeBlock code={`@keyframes PageIn {
     from {
         translate: 100vw 0;
     }
@@ -53,6 +73,7 @@ import PageTitle from "../../components/PageTitle.astro"
         translate: 0 0;
     }
 }
+
 @keyframes PageOut {
     from {
         translate: 0 0;
@@ -63,6 +84,7 @@ import PageTitle from "../../components/PageTitle.astro"
         opacity: 0;
     }
 }
+
 @keyframes TitleIn {
     from {
         translate: 200px 0;
@@ -71,6 +93,7 @@ import PageTitle from "../../components/PageTitle.astro"
         translate: 0 0;
     }
 }
+
 @keyframes TitleOut {
     from {
         opacity: 1;
